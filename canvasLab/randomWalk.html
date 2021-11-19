@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Random walk</title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="canvas.css" type="text/css" media="all" />
+  <script src="canvas.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    canvas {
+      /* border: 1px solid red; */
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const random = range => Math.floor(Math.random() * (range))
+
+    //repeat(100, i=>console.log(random(5)))
+
+    const dot = {
+      x: getViewportWidth()/2,
+      y: getViewportHeight()/2,
+      step: 30,
+      initOrigin(ctx) {
+        ctx.moveTo(this.x, this.y)
+      },
+      *move(ctx) {
+        const xdir = [0, 1, 0, -1]
+        const ydir = [1, 0, -1, 0]
+
+        let count = 0
+
+        while (true) {
+          ++count
+          
+          ctx.beginPath()
+          ctx.moveTo(this.x, this.y)
+          ctx.strokeStyle = `rgba(${
+            255
+          }, ${
+            (100+count)%255
+          }, ${
+            20
+          }, 0.5)`
+
+          const dir = random(4)
+          this.x += xdir[dir] * this.step
+          this.y += ydir[dir] * this.step
+
+          ctx.lineTo(this.x, this.y)
+          //ctx.closePath()
+          ctx.stroke()
+
+          yield 
+        }
+      }
+    }
+  </script>
+  <script charset="utf-8">
+    //import adjustToViewport from './fullsize.js'
+    window.onload = () => {
+      try {
+        const [canvas, ctx] = getCanvas()
+        adjustToViewport(canvas)
+
+        ctx.strokeStyle = 'red'
+        ctx.lineWidth = 3
+        ctx.globalAlpha = 1
+
+        /*
+        ctx.beginPath()
+        ctx.lineTo(100, 100)
+        ctx.lineTo(200, 20) // 200
+        ctx.lineTo(300, 500)
+        ctx.stroke()
+        */
+        
+        dot.initOrigin(ctx)
+
+        const iter = dot.move(ctx)
+        setInterval(() => iter.next(), 40)
+      } catch (err) {
+        console.error(err)
+        alert(err)
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <canvas>
+  </canvas>
+</body>
+
+</html>

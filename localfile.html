@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Localfile</title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    @keyframes foldingHide {
+      to {
+        height: 0;
+        opacity: 0;
+
+        /* animation-play-state: paused; */
+      }
+    }
+
+    body {
+      /* overflow: hidden; */
+      color: white;
+      background-color: black;
+    }
+
+    body.whiteTheme {
+      background-color: initial;
+      color: #222;
+    }
+
+    .picture {
+      width: 60%;
+      height: 70%;
+      /* overflow: hidden; */
+      overflow: scroll;
+      box-shadow: 0 8px 30px rgba(30, 30, 30, .5) inset;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    img {
+      height: 100%;
+      /* max-width: 500%px; */
+      /* border: 2px solid blue; */
+    }
+
+    textarea {}
+
+    .name {
+
+      text-align: center;
+
+      font-weight: 500;
+
+      font-size: 2em;
+      margin-bottom: .2em;
+
+      transition:
+        font-size 4s,
+        opacity .2s,
+        height .3s;
+      transition-timing-function: ease-in;
+
+      transform-origin: center;
+
+      text-overflow: hidden;
+      overflow: hidden;
+      /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
+
+      /* border: 2px solid blue; */
+
+      height: 1.4em;
+
+    }
+
+    .backdrop {
+      /*width: 100vw;
+        height: 100vh;*/
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+
+      /* background-color: rgb(255 0 0 .2); */
+
+      background-image:
+        linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
+        url('./resources/images/wallpaper.jpg');
+
+      background-size: cover;
+      z-index: -1;
+      filter: blur(6px);
+
+      background-position: center;
+    }
+  </style>
+  <style type="text/css" media="all">
+    .interfaces {
+      font-size: 1.3em;
+      display: flex;
+      justify-content: space-between;
+
+      width: 60%;
+
+      /* border: 3px solid blue; */
+
+      /*background-image:
+        linear-gradient(skyblue, skyblue),
+        linear-gradient(yellowgreen, yellowgreen),
+        linear-gradient(yellow, yellow);*/
+
+      /*background-clip:
+        content-box,
+        padding-box,
+        border-box;*/
+    }
+
+    .interfaces input {
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .interface {
+      /* border: inherit; */
+      /* border-color: red; */
+      flex: 0 0 auto;
+    }
+
+    .theme {
+      width: 50px;
+    }
+
+    .interface label {
+      font-weight: 300;
+      /* border: inherit; */
+      /* border-color: skyblue; */
+    }
+
+    .interface:nth-child(1) label {
+      /* border: inherit border-color: orange; */
+    }
+
+
+    .theme label {
+      /* margin-left: auto; */
+      width: 1.1em;
+      height: 1.1em;
+
+      width: 100px;
+      height: 100px;
+
+      background-color: silver;
+      border-radius: 20%;
+    }
+    
+  .theme label::before{
+    content: '16';
+    position: absolute;
+    left:0;
+    top:0;
+    bottom: 0;
+    right: 0;
+    
+    background-color: red;
+  }
+  </style>
+  <!--theme-->
+  <style type="text/css" media="all">
+    .whiteTheme .backdrop {
+      background-image: none;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    try {
+      window.onload = () => {
+        const interfaces = cls('interfaces')
+        const fileInput = interfaces.querySelector('input[type="file"]')
+        const themeInput = interfaces.querySelector('input[type="checkbox"]')
+
+        const namebox = cls('name')
+        const img = tag('img')
+        const backdrop = cls('backdrop')
+
+        fileInput.oninput = ev => {
+          const fr = new FileReader()
+          fr.onload = ev2 => {
+            const data = fr.result
+            const ele = img
+            ele.src = data
+            const name = parseFilename(ev.target.files[0].name).filename
+
+            namebox.innerText = ele.alt = name
+            //document.getElementsByTagName('textarea')[0].value = data
+          }
+          //fr.readAsText(ev.target.files[0])
+          fr.readAsDataURL(ev.target.files[0])
+
+          backdrop.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('${URL.createObjectURL(ev.target.files[0])}')`
+        }
+        themeInput.onchange = ev => {
+          const toggleTheme = divergeMethodF(
+            document.body.classList,
+            'add',
+            'remove',
+            'whiteTheme'
+          )
+          toggleTheme(ev.target.checked)
+        }
+        namebox.onclick = ev => {
+          /*executeAllMethodF(
+            ev.target.style,
+            [
+              'height',
+              'opacity',
+            ]
+          )(0)*/
+          
+          ev.target.style.height=0
+          ev.target.style.opacity=0
+
+        }
+      }
+    } catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  </script>
+</head>
+
+<body>
+  <ul class="interfaces">
+    <div class="interface file">
+      <input type="file" name="file" id="file" accept="image/*" autofocus />
+      <label for="file">choose image</label>
+    </div>
+    <!-- <textarea rows="1" cols="20"></textarea> -->
+    <div class="interface theme">
+      <input type="checkbox" name="theme" id="theme" />
+      <label for="theme"></label>
+    </div>
+  </ul>
+  <div class="name">lorem ipsum</div>
+  <div class="picture">
+    <img src="./resources/images/wallpaper.jpg" alt="" />
+  </div>
+  <div class="backdrop">
+  </div>
+</body>
+
+</html>

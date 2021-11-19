@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    @keyframes shift {
+      to {
+        transform:
+          translateX(50px);
+      }
+    }
+  </style>
+  <style type="text/css" media="all">
+    body {
+      background-color: initial;
+      color: initial;
+    }
+
+    ol {
+      display: flex;
+
+      border: 0;
+
+
+    }
+
+    ol li {
+      width: 50px;
+      height: 50px;
+      border: 1px solid silver;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const content = 0b10101001
+
+    const bits = [1, 0, 1, 0, 1, 0, 0, 1]
+
+    const updateM = byteElement => bits => {
+      toArray(byteElement.children)
+        .forEach((bitElement, i) => {
+          bitElement.innerText = bits[i]
+        })
+    }
+    
+    const shift = bits => {
+     return bits.shift(0)
+    }
+    
+    const reflectShift =(bits,howmany )=> {
+      const bitArray = []
+    
+   toArray(byteElement.children)
+   
+   repeat(howmany,i => {
+     const newBitElement = document.createElement('li')
+     newBitElement.innerText = 0
+     
+     
+     byteElement.children[0]
+   } )
+   
+   
+   
+    }
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      const shiftButton = cls('shift')
+      const byteElement = cls('byte')
+
+      const updateByteElement = updateM(byteElement);
+      updateByteElement(bits)
+
+      /*shift.onclick = ev => {
+        bitElemente.style.animation = '1s shift'
+      }*/
+
+    })
+  </script>
+</head>
+
+<body>
+  <ol class="byte">
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+    <li class="bit">0</li>
+  </ol>
+  <button class="shift">shift</button>
+</body>
+
+</html>

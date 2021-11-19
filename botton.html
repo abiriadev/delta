@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    body {
+      background-color: #fff;
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    input[type="checkbox"]:checked+label>botton {
+      box-shadow: 1px 2px 5px 1px rgba(80, 80, 80, .4) inset;
+      background-image: linear-gradient(to top, transparent, rgba(40, 40, 40, .1));
+    }
+
+    button {
+      font-size: 2rem;
+      background: #0bd;
+      color: #fff;
+      border-radius: 8px;
+      /* padding: 18px 32px; */
+      outline:0;
+      
+      padding: 19px 60px;
+    }
+
+    /* #better:checked +*/
+    button {
+      color: #eee;
+      font-size: 23px;
+      font-weight: 600;
+      /* text-shadow: -1px -1px 1px gray; */
+      box-shadow: 1px 2px 5px 1px rgba(80, 80, 80, .4);
+      background-image: linear-gradient(transparent, rgba(40, 40, 40, .1));
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" name="better" id="better" />
+  <input type="checkbox" name="click" id="click" />
+  <label for="click">
+    <button>
+      Download
+    </button>
+  </label>
+</body>
+
+</html>

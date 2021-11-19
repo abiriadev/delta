@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" />
+  <link rel="stylesheet" href="./widgets/slider.css" />
+  <link rel="stylesheet" href="revolution.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="colorwheelBG.css" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./widgets/slider.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    .color {
+      width: 100px;
+      height: 60px;
+
+      border-radius: 10px;
+      font-size: 30px;
+      line-height: 60px;
+      font-weight: 700;
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+    .colorwheel {
+      background-color: yellowgreen;
+    }
+
+    .pointer {
+      width: 20px;
+      height: 20px;
+
+      border: 5px solid white;
+    }
+
+    .text {
+      margin-top: 20px;
+      font-size: 20px;
+      color: white;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    let rad = 100 - 10
+
+    moveToAngle = (target, theta) => {
+      const x = Math.sin(theta) * rad
+      const y = Math.cos(theta) * rad
+
+      target.style.left = `${x+rad}px`
+      target.style.top = `${-y+rad}px`
+    }
+
+
+    const chooseColor = (color, rad) => {
+      const deg = radianToDegree(rad)
+      color.style.backgroundColor = `hsl(${deg}, 100%, 50%)`
+    }
+
+    window.onload = () => {
+      setSlider('.pointer', null, {
+        min: 0,
+        max: 360,
+        value: 0,
+        call: (value, target) => {
+          moveToAngle(target, degreeToRadian(value))
+          chooseColor(color, degreeToRadian(value))
+        }
+      })
+
+      const [color, colorwheel, pointer, text] = getElement(['color', 'colorwheel', 'pointer', 'text'])
+
+      colorwheel.onclick = ev => {
+        text.innerText = ""
+
+        let x = ev.offsetX - rad
+        let y = ev.offsetY - rad
+
+        let theta = Math.atan(x / y)
+
+        if (x > 0 && y < 0) {
+          text.innerText = "+ -) "
+          theta = -theta
+        }
+        if (x > 0 && y > 0) {
+          text.innerText = "+ +) "
+          theta = Math.PI - theta
+        }
+        if (x < 0 && y < 0) {
+          text.innerText = "- -) "
+          theta = -theta
+        }
+        if (x < 0 && y > 0) {
+          text.innerText = "- +) "
+          theta = Math.PI - theta
+        }
+
+        moveToAngle(pointer, theta)
+        chooseColor(color, theta)
+        text.innerText += radianToDegree(theta)
+      }
+
+      // init
+      colorwheel.onclick({ offsetX: 100, offsetY: 0 })
+    }
+  </script>
+</head>
+
+<body>
+  <div class="color">ffffff</div>
+  <div class="colorwheel x200 orbit">
+    <div class="pointer planet"></div>
+  </div>
+  <div class="text"></div>
+</body>
+
+</html>

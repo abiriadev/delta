@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <script src="./../touchLab/swipe.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    //import {setTouchZone} from "./generatePointer.js"
+    window.onload = () => {
+      swipe(document.body, '.cube')
+
+      const cube = document.getElementsByClassName('cube')[0]
+
+      let curruntRelX = 0
+      let curruntRelY = 0
+      
+      let st = 0
+
+      let saveDegX = 0
+      let saveDegY = 0
+
+      const rotateY = deg => cube.style.transform = `rotateY(${deg}deg)`
+      const rotateX = deg => cube.style.transform = `rotateX(${deg}deg)`
+      const rotateXY = (degX, degY) => cube.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`
+
+      const move = detail => {
+        rotateXY(detail.relY + saveDegY, -detail.relX + saveDegX)
+      }
+      
+      cube.addEventListener('swipeing', ev => {
+        ++st ? cube.style.transition = "0s" : 0
+
+        move(ev.detail)
+        
+        curruntRelX= ev.detail.relX
+        curruntRelY= ev.detail.relY
+      })
+
+      cube.addEventListener('swipecancel', ev => {
+       
+        saveDegX -= curruntRelX
+        saveDegY += curruntRelY
+console.log(saveDegX+' deg')
+      
+        
+      })
+
+    }
+  </script>
+  <style type="text/css" media="all">
+    body {
+      perspective: 800px;
+      background-image: url("./../../resources/images/sunset");
+
+      background-size: 100% 100%;
+    }
+
+    .surface {
+      width: 200px;
+      height: 200px;
+
+      background-color: orange;
+
+      opacity: .6;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      /* transform-origin: inherit; */
+    }
+
+    .cube {
+      transition: .5s;
+
+      left: -50px;
+      top: -50px;
+
+      /* background-color: green; */
+      width: 100px;
+      height: 100px;
+
+      transform-style: preserve-3d;
+      transform-origin: right bottom;
+    }
+
+    .surface:nth-child(1) {
+      transform: translateZ(-100px);
+    }
+
+    .surface:nth-child(2) {
+      transform: rotateY(-90deg) translateZ(-100px);
+
+      background-color: yellow;
+    }
+
+    .surface:nth-child(3) {
+      transform: rotateY(90deg) translateZ(-100px);
+      background-color: blue;
+    }
+
+    .surface:nth-child(4) {
+      transform: rotateX(-90deg) translateZ(-100px);
+      background-color: green;
+
+    }
+
+    .surface:nth-child(5) {
+      transform: rotateX(90deg) translateZ(-100px);
+      background-color: red;
+    }
+
+    .surface:nth-child(6) {
+      transform: translateZ(100px);
+
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cube">
+    <div class="surface"></div>
+    <div class="surface"></div>
+    <div class="surface"></div>
+    <div class="surface"></div>
+    <div class="surface"></div>
+    <div class="surface"></div>
+  </div>
+</body>
+
+</html>

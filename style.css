@@ -1,0 +1,167 @@
+    * {
+      word-wrap: break-word;
+      word-break: break-all;
+      /* overflow-clip-box */
+
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      /* display: block; */
+      position: relative;
+
+      color: #000;
+
+      opacity: 1;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    body {
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 1vm;
+      height: 1000px;
+      box-sizing: border-box;
+
+      border: 0px solid red;
+    }
+
+    header {
+      background: #222;
+
+      width: 100%;
+      height: 73px;
+      position: fixed;
+
+      left: 0;
+      top: 0;
+
+      box-shadow: 0 5px 20px 3px #ccc;
+
+      z-index: 5;
+    }
+
+    header>div {
+      position: relative;
+    }
+
+
+    header #roof {
+      width: 100%;
+      height: 20px;
+
+      background: #000;
+    }
+
+    header .title {
+      color: #fff;
+      font-weight: 400;
+
+      left: 15px;
+      bottom: -25px;
+      font-size: 19px;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      display: inline-block;
+
+      position: absolute;
+    }
+
+    header .description {
+      color: #aaa;
+
+      font-weight: 300;
+
+      left: 15px;
+      bottom: -50px;
+
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      display: inline-block;
+
+      position: absolute;
+
+    }
+
+    #header {
+
+      margin-top: 73px;
+      font-size: 4em;
+      padding: 20px;
+      /* border: 3px solid black; */
+      border-bottom: 1px solid black;
+      height: auto;
+    }
+
+    .wraper {
+      /* border: 5px solid gray; */
+      height: 400px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      /* grid-column-gap: 10px; */
+    }
+
+    .sidebar {
+      /* border: 5px solid green; */
+      border-right: 1px solid black;
+    }
+
+    .sidebar .menu,
+    .sidebar .menu li {
+      width: auto;
+      height: auto;
+
+      padding: 2px;
+      font-size: 1em;
+      font-weight: 500;
+      font-family: Arial, Helvetica, sans-serif
+    }
+
+    .sidebar .menu {
+      padding-left: 30px;
+      padding-top: 20px;
+
+      padding-right: 20px;
+    }
+
+    .main {
+      /* border: 5px solid orange; */
+      padding: 5px;
+      width: auto;
+      height: auto;
+    }
+
+    .main .subject {
+      font-size: 1.8em;
+      font-weight: 400;
+      padding: 10px;
+      padding-bottom: 3px;
+      /* color: red; */
+
+      width: auto;
+      height: auto;
+
+      /* border: 4px solid red; */
+    }
+
+    .main article#content {
+      width: auto;
+      height: auto;
+
+      padding: 10px;
+      font-size: 1.2em;
+    }

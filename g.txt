@@ -1,0 +1,1025 @@
+
+모바일웹의 확산으로 현재는 웹과 앱의 경계가 점차 사라지고 있습니다.
+한예로 초창기 스마트폰이 출시됬을당시에 위치/카메라/터치 등의 하드웨어를 컨트롤하는 프로그래밍들은 모두 해당 하드웨어에서 지원하는 프로그램언어로 제작하여야 했습니다.
+
+하지만 앱의 단점 즉 설치하는과정이 필요했고 OS가 변경될경우 이용할수 없기때문에 이 모두를 통합할수 있는 무언가가 필요했는데 그중에 하나가 Web이다. 그중에서도 HTML5는 앞으로도 가장 각광받는 web schema이다.
+
+
+웹플랫폼을 기반으로 안드로이드/아이폰 통합 어플리케이션을 제작하기위한 tool들이 많이 나와있으니 참고하시면 아주 유용하게 사용하실수 있습니다.
+예로
+앱소프레스_Appspresso
+http://www.appspresso.com/appdev/appMain.do 
+
+sencha
+http://www.sencha.com/ 
+
+ 
+지금이야기에서는(강좌라고하면 욕먹을께 분명하기에.;;;;) 스마트폰의 가장 핵심적이지만 무심코 지나칠수 있는 터치에 대해서 설명하겠습니다.
+스마트폰의 가장강점이자  현시점
+앱스토어 앱 등록건수 약450,000건
+안드로이드마켓 앱 등록건수 약200,000건 
+을 기록할수 있는 원동력은 제 개인적인 생각은 터치였을꺼라고 조심스럽게 얘기해 보고 싶습니다.
+
+
+기존에 Web에서는 touch이벤트를 컨트롤하는건 상상할수 없는 일이없지만 우리의 후원자님들(w3c 워킹그룹)이 개발에 유용함을 개선하기위해 노력해주시고 계시기때문에 새로운 라이브러리들이 생겨나기 시작했습니다.
+touch class도 그중에 하나입니다.
+
+제작에 앞서 touchEvent Handler에 대해서 설명하겠습니다.
+touchEvent Handler에는 아래와 같은 종류가 있습니다.
+ 이벤트종류	 설명
+ touchstart	 손가락 표면이 닿을때 발생
+ touchmove	 표면에 움직이는 이벤트를 보낼때 발생
+ touchend	 표면에 이벤트가 없어질때 발생
+ touchcancel	 아직 정확한뜻을.;;; 모르겠네여.;;;
+
+명칭에서도 확인할수 있습니다만 나름대로의 설명을 붙여봤습니다.
+이밖에도 아이폰에서는 gestureEvent도 있지만 아직까진 모든 브라우저(즉 기기)에서 호환되지 않기때문에 뺐습니다.
+아래는 현재 touchEvent에 대한 테이블입니다.
+
+
+touchstart
+touchmove
+touchend
+gesturestart
+gesturemove
+gestureend
+Android
+y
+y
+y
+n
+n
+n
+iPhone
+y
+y
+y
+y
+y
+y
+has event.touches
+y
+y
+y
+n
+n
+n
+(iPhone) has event.scale and event.rotation
+n
+n
+n
+y
+y
+y
+(iPhone) touch in event.touches
+y
+y
+n
+-
+-
+-
+(iPhone) touch in event.changedTouches
+y
+y
+y
+-
+-
+-
+
+ 
+
+ touchEvent에서 얻어낸 객체에 해당되는 속성은 아래와 같습니다.
+
+ 속성	 설명
+ clientX	 뷰포트의 상대적인 X좌표
+ clientY	 뷰포트의 상대적인 Y좌표
+ identifier	 터치객체의 고유식별자
+ pageX	 페이지좌표에서의 X좌표
+ pageY	 페이지좌표에서의 Y좌표
+ screenX	 화면좌표에서의 X좌표
+ screenY	 화면좌표에서의 Y좌표
+ target	 터치된 객체
+
+ 
+아래는 터치를 이용한 정말 초단순 대충 프로그램입니다.
+모바일에서 실행해서 터치를하게되면 "빨간색사각"의 entry가 생기고 그상태에서 움식이면 같이 움직이게되며 touch를 떼게되면 화면에서 사라지게됩니다.
+
+앞으로 응용해서 slide나 간단한 게임도 제작해볼 예정입니다.
+
+
+view plaincopy to clipboardprint?
+<style>   
+  
+.boll{  
+  
+width:100px;height:100px;background:red;position:absolute;  
+  
+}  
+  
+</style>  
+  
+<script>  
+  
+  
+  
+function boll(){  
+  
+this.product=document.createElement('div');  
+  
+this.product.setAttribute("class","boll");  
+  
+this.touchpad=30;   //터치된곳에서 겹치지 않도록  
+  
+  
+  
+}  
+  
+  
+  
+boll.prototype.appendD=function(){  
+  
+  
+  
+document.body.appendChild(this.product);    //화면에 view  
+  
+}  
+  
+  
+  
+boll.prototype.removeD=function(){  
+  
+  
+  
+document.body.removeChild(this.product);    //화면에 remove  
+  
+}  
+  
+  
+  
+boll.prototype.moveD=function(touchevent){  
+  
+    //터치하면서 움직일때 따라다니게  
+  
+    touch=touchevent.touches[0];  
+  
+    this.product.style.left=touch.clientX+this.touchpad;  
+  
+    this.product.style.top=touch.clientY+this.touchpad;  
+  
+}  
+  
+  
+  
+  
+  
+    window.onload=function(){  
+  
+        var v=new boll;  
+  
+        document.addEventListener("touchstart",function(e){  
+  
+            v.appendD();  
+  
+          
+  
+        });  
+  
+        document.addEventListener("touchmove",function(e){  
+  
+            //preventDefault 없으면 touchmove가 제대로 작동하지 않음(이유는 확인해야함.ㅠㅠ)  
+  
+            e.preventDefault();  
+  
+            v.moveD(e);  
+  
+  
+  
+        });  
+  
+        document.addEventListener("touchend",function(e){  
+  
+        v.removeD();  
+  
+  
+  
+        });  
+  
+    }  
+  
+  
+  
+  
+  
+</script>  
+  
+  
+  
+<div id='myBody'></div>  
+  
+<input type=text id="text" 직alue='tst'>  
+
+
+출처: https://thinking0.tistory.com/entry/javascript-touch이벤트1 [뚝딱뚝딱!!!!]
+
+
+
+---
+
+
+clientX, offsetX, pageX, screenX의 차이
+0 Comments
+1. clientX, clientY
+위 메서드는 클라이언트 영역 내의 가로,세로 좌표를 제공합니다. 여기서 클라이언트 영역은 현재 보이는 브라우저 화면이 기준이 됩니다.
+
+clientX : 브라우저 페이지에서의 X좌표 위치를 반환하나 스크롤은 무시하고 해당 페이지의 상단을 0으로 측정합니다.
+
+clientY : 브라우저 페이지에서의 Y좌표 위치를 반환하나 스크롤은 무시하고 해당 페이지의 상단을 0으로 측정합니다.
+
+2. offsetX, offsetY
+위 메서드는 이벤트 대상이 기준이 됩니다. ( 화면 중간에 있는 박스 내부에서 클릭한 위치를 찾을 때 해당 박스의 왼쪽 모서리 좌표가 0이됩니다. 화면의 기준이 아닙니다)
+
+전체 문서를 기준으로 합니다(스크롤 화면 포함)
+
+offsetX : 이벤트 대상 객체에서의 상대적 마우스 x좌표 위치를 반환합니다.
+
+offsetY : 이벤트 대상 객체에서의 상대적 마우스 y좌표 위치를 반환합니다.
+
+3. pageX, pageY
+위 메서드는 전체 문서를 기준으로 x,y 좌표를 반환 합니다. 스크롤 화면을 포함해서 측정합니다.
+
+pageX : 브라우저 페이지에서의 x좌표 위치를 반환합니다.
+
+pageY : 브라우저 페이지에서의 Y좌표 위치를 반환합니다.
+
+4. screenX, screenY
+위 메서드는 모니터 화면을 기준으로 좌표를 제공합니다. 여기서 중요한 점은 브라우저 화면이 아니라 자신의 모니터 화면 전체를 기준으로 좌표를 측정한다는 점입니다.
+
+screenX : 전체 모니터 스크린에서의 x좌표 위치를 반환합니다.
+
+screenY :전체 모니터 스크린에서의 y좌표 위치를 반환합니다.
+
+ 
+
+아직 헷갈리신다면 한번 더 정리하겠습니다.
+
+offset 메서드는 이벤트가 걸려 있는 DOM객체를 기준으로 좌표를 출력합니다. 이와 비슷한 메서드로 layer가 있습니다. 이 메서드는 현재 파이어폭스에서만 사용합니다.
+
+screen 메서드는 화면 출력 크기(자신의 모니터)가 기준인 절대 좌표입니다. 브라우저를 움직여도 값은 같습니다.
+
+client 메서드는 브라우저가 기준인 좌표입니다. 현재 보이는 브라우저 화면 상에서 어느 지점에 위치하는 지를 의미하기 때문에 스크롤 해도 값은 변하지 않습니다.
+
+page 메서드는 문서가 기준입니다. client와 비슷하지만 이 메서드는 문서 전체 크기가 기준이라 스크롤 시 값이 바뀝니다. (스크롤을 포함해서 측정합니다)
+
+
+
+---
+
+
+마우스 이벤트는 매우 심각하게 다뤄온지 오래되었기 때문에 여러가지 기법이 널리 알려져있습니다. 이에 반해 터치이벤트는 손쉽게 정리하기 쉽지 않습니다.
+
+터치이벤트는 더 이상 모바일 기기만의 문제가 아닙니다. 반응형 웹을 구성할 때 마우스 조차 터치의 슬라이드를 흉내내야하고 터치패널이 내장된 윈도우 기기도 심심치 않게 있습니다.
+
+터치이벤트를 깊이 들여다보고, 보다 손쉽게 사용할 방법을 생각해 보겠습니다.
+
+ 
+ 
+ 
+
+터치이벤트의 문제
+기본은 터치이벤트라 불리는 이벤트의 종류입니다. 현재 대부분의 모바일 기기에서 지원되는 이벤트는 3가지로 그 외에는 벤더의 의존성이 너무 심해서 범용으로 쓰기는 무리가 있습니다.
+
+touchstart : 손가락을 화면에 닿는 순간 발생
+touchmove : touchstart 한 상태에서 떼지 않고 화면을 움직여 다닐 때 주기적으로 발생
+touchend : 손가락을 화면에서 떼면 발생
+느낌으로 보자면 mousedown, mousemove, mouseup 과 같은 분위기 입니다…만!
+
+터치이벤트는 중요한 차이점이 있습니다. 멀티터치를 지원한다는 거죠.
+
+예를 들어 검지가 화면에 닿는 순간 이미 touchstart 가 발생했습니다.
+하지만 그 상태에서 중지가 화면에 닿으면 touchend가 발생한 적도 없이 또 touchstart가 발생합니다.
+마찬가지로 검지를 움직이면서 중지를 떼면 touchmove가 발생하면서 동시에 touchend도 발생합니다.
+이 점이 바로 지옥입니다.
+
+손가락이 여러 개다 보니 하면서 ~ 한다는 거죠. 이런 관점으로 마우스 이벤트를 새삼 바라보면 손가락을 한 개만 지원하는 프로요같은 싱글 터치기반의 이벤트와 비슷한 것입니다.
+
+단순히 dom 에 터치이벤트를 거는 것 만으로는 복잡한 처리를 할 수 없습니다. touchstart 가 수신 되어도 모든 손가락이 touchstart 가 아니고 어떤 손가락은 touchmove 중이고, 어떤 손가락은 이미 touchstart 가 발생된 상태이기 때문입니다.
+
+이를 테스트하기 위한 간단한 js를 제작해 봅시다.
+
+div 를 하나 설정하고 id 를 test 로 준다.
+touchstart, touchend 를 걸어 결과를 test.innerHTML 을 통해 보여준다.
+별도의 로그함수를 작성하여 간단히 사용한다.
+로그함수를 작성해봅시다. div는 공간이 유한하므로 10개 정도 보이다가 다시 클리어하고 보여주는 식으로 가겠습니다.
+
+1
+2
+<div style=”width:100%;height:480px;background:#ff0;color:#000;font-size:9px” id=”test”>
+</div>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+var test = document.getElementById( "test" );
+var logCount = 0;
+ 
+function log( $v ){
+  if( ++logCount > 10 ){
+    logCount = 0;
+    test.innerHTML = $v + "<br>";
+  }else{
+    test.innerHTML += $v + "<br>";
+  }
+}
+다음은 이벤트 리스너에서의 작동인데 배열에 필요한 내용을 차곡히 넣은 뒤 join( ” ) 을 통해 log 로 쏴주면 될 것입니다.
+터치된 객체 자체는 touches 에 들어있지만 touchend 의 경우는 changedTouches 를 조사해야 하니 두 개 다 정리해서 보여주도록 하겠습니다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+function touchListener( $e ){
+  var i, j, t0, touch;
+ 
+  //touches부터 정리
+  touch = $e.touches;
+  t0 = [ '<b>',
+    $e.type,
+    '</b><br>touches(length:',
+    j = touch.length
+  ];
+ 
+  for( i = 0 ; i < j ; i++ )
+    t0.push(
+      ', ', i, ':',
+      parseInt( touch[i].pageX ), ',',
+      parseInt( touch[i].pageY )
+    );
+ 
+  //changedTouches 정리
+  touch = $e.changedTouches;
+  t0.push(
+    ')<br> changed(length:',
+    j =touch.length
+  );
+  for( i = 0 ; i < j ; i++ )
+    t0.push(
+      ', ', i, ':',
+      parseInt( touch[i].pageX ), ',',
+      parseInt( touch[i].pageY )
+    );
+ 
+  //로그에 보고
+  log( t0.join( '' ) + ')' );
+  test.dispatchEvent( new Event("to") );
+}
+다 되었으니 이제 이벤트 리스너만 걸어주면 됩니다.
+
+1
+2
+test.addEventListener( 'touchstart', touchListener );
+test.addEventListener( 'touchend', touchListener );
+다음과 같은 로그들이 찍혀 나오기 시작할 겁니다.
+
+1
+
+ 
+ 
+ 
+
+touchmove의 특이점
+touchmove 는 touchstart 나 touchend 와 달리 일반적으로 브라우저가 처음부터 소유해 버립니다.
+
+따라서 최초 한 번은 발생하지만 그 이후는 브라우저의 스크롤이 가져가 버립니다.
+
+만약 어떤 dom 에서 touchmove 이벤트를 사용하겠다는 뜻은 바꿔 말하면
+
+그 영역에서는 스크롤이 안일어나게 하겠다
+
+는 뜻입니다.
+
+따라서 touchmove 의 경우는 반드시 e.preventDefault() 를 호출하여 막아주지 않으면 제대로 작동하지 않습니다. 이러한 특이점을 머리 속에 염두해두고 귀찮으므로, 대부분의 실험은 touchstart 와 touchend 를 이용하는 쪽으로 가겠습니다.
+
+ 
+ 
+ 
+
+Touches와 changedTouches
+이제 이 테스터를 갖고 놀다보면 어떤 식으로 터치를 처리해야 하는 지 감이 옵니다. 터치이벤트는 touches 배열과 changedTouches 배열의 미묘한 조합인 것입니다. 이 중 changedTouches 를 먼저 이해해 보죠.
+
+우선 검지를 화면에 가져갑시다.
+touchstart
+touches(length:1,0:100,100)
+changed(length1,0:100,100)
+
+즉 터치된 것도 변화가 일어난 것도 각각 1개이고 그 둘은 같은 거죠.
+ 
+
+그 상태에서 움직이지 않고 중지도 화면에 가져갑니다.
+touchstart
+touches(length:1,0:100,100, 1:200,200)
+changed(length1,0:200,200)
+
+0번은 유지 되지만 1번이 새롭게 터치 객체에 추가됩니다. 이 때 변화한 손가락 쪽은 중지로 changed에는 중지만 들어와 있습니다.
+ 
+
+검지를 떼봅시다.
+touchend
+touches(length:1,0:200,200)
+changed(length1,0:100,100)
+
+화면에 남아있는 중지가 touches의 0번이 되고 방금 뗀 검지는 changed의 0번이 되어 들어옵니다.
+ 
+
+중지도 뗍니다.
+touchend
+touches(length:0)
+changed(length1,0:200,200)
+
+touches는 더 이상 남아있지 않고 중지는 changed의 0번이 되어 들어옵니다.
+
+우선 위의 실험에서 알 수 있는 것은…
+
+touchstart 와 touchend 에서 changedTouches 는 언제나 1개만 들어옵니다.
+changedTouches 가 여러 개 들어오는 상황은 touchmove 에서 2개 이상의 손가락을 동시에 움직일 때 입니다.
+인덱스는 그냥 인덱스일 뿐 처음 터치한 손가락이 뭔지, 두 번째 터치한 손가락이 뭔지를 알려주지는 않습니다.
+ 
+ 
+ 
+
+identifier 를 이용한 손가락별 이벤트
+그렇습니다. touches 의 배열과 changedTouches 의 배열을 굴려봐야 거기의 인덱스로는 아무 것도 알 수 없습니다.
+각 터치 객체에는 identifier 라는 손가락 고유의 id 를 갖고 있습니다. 바로 이것을 이용해야 합니다.
+
+잠시 마우스 이벤트로 돌아가 봅시다.
+
+마우스 이벤트를 싱글터치 이벤트로 이해할 수도 있지만 아주 정확하게 말하자면 마우스 왼쪽 버튼에 한정된 이벤트로 볼 수도 있습니다.
+그렇다면 터치이벤트도 손가락별 이벤트로 나눌 수 있습니다.
+단지 검지이벤트로 할 수는 없고 1번째 손가락 이벤트, 2번째 손가락 이벤트 등으로 처리할 수 있습니다.
+이 아이디어를 적용하려면 dom 의 이벤트를 받는 리스너가 손가락별 이벤트의 라우터로 작동하여 다시 이벤트를 전달해줘야 합니다. 이러한 이벤트를 매우 상세하게 정의해보면 다음과 같이 생각할 수 있습니다(네개까지만 하겠습니다 =.=; )
+
+touchstart0, touchmove0, touchend0
+touchstart1, touchmove1, touchend1
+touchstart2, touchmove2, touchend2
+touchstart3, touchmove3, touchend3
+
+또한 앞에서 한 실험을 고려해보면 개별 손가락 이벤트로 처리하는 이상 변화된 손가락만 인지하면 되므로 touches 를 무시하고 changedTouches 만 사용하면 됩니다.
+
+모든 내용을 바탕으로 우선 터치이벤트를 라우팅 해 줄 리스너를 작성해봅시다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+function touchRouter( $e ){
+  var t, e, i, j, k;
+ 
+  //앞 서 설명한대로, move 일 땐 막자.
+  if( $e.type == "touchmove" ) $e.preventDefault();
+ 
+  t = $e.changedTouches;
+  for( i = 0, j = t.length ; i < j ; i++ ){
+ 
+    //id를 붙여 이벤트를 만들고
+    e = document.createEvent( "Event" );
+    e.initEvent( $e.type + t[i].identifier, true, true );
+ 
+    //속성을 복사해준다.
+    for( k in t[i] ) e[k] = t[i][k];
+ 
+    //라우팅~
+    $e.target.dispatchEvent( e );
+  }
+}
+머..딱히 설명할 것도 없습니다. 그냥 라우팅 하고 있습니다. 이제 손가락별로 이벤트를 걸어봅시다. 순서는 test 에 라우터를 걸어준 뒤, 손가락별 이벤트를 셋팅하면 됩니다. 손가락별 리스너를 먼저 작성해볼까요.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+function fingerListener( $e ){
+  log(
+    '<b>' + $e.type +
+    '</b><br>pos(' +
+    parseInt( $e.pageX ) + ',' +
+    parseInt( $e.pageY ) +
+    ')'
+  );
+}
+이제 test 에 위에 언급한 순서대로 걸어줍니다.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+//라우터 셋팅
+test.addEventListener( 'touchstart', touchRouter );
+test.addEventListener( 'touchmove', touchRouter );
+test.addEventListener( 'touchend', touchRouter );
+ 
+//0번손가락
+test.addEventListener( 'touchstart0', fingerListener );
+test.addEventListener( 'touchend0', fingerListener );
+ 
+//1번손가락
+test.addEventListener( 'touchstart1', fingerListener );
+test.addEventListener( 'touchend1', fingerListener );
+이제 다음과 같은 화면을 볼 수 있습니다.
+
+Screenshot_2013-10-03-13-10-23
+
+성능 상의 개선이라면 이벤트객체를 매번 생성치 말고 풀링하는 방안과 for~in 루프 대신 touch같은 속성에 직접 touches객체를 넣어서 전달해주는 방법 등을 고려해볼만 합니다.
+
+ 
+ 
+ 
+
+결론
+이게 정말 끝이라고 생각하신건 아니겠죠? 모바일 개발의 지옥은 지금부터 입니다.
+
+현재 일반적으로 커버해야하는 모바일 브라우저의 수는 국내처럼 갤럭시로 대동통합된 경우를 봐도 20개 이상입니다. 20개?!! 정말? 주요한 것들만 세봅니다.
+
+아이폰, 아이패드용 : 16종
+( 크롬, 파폭, 오페라, 네이버내장브라우저, 페이스북내장브라우저 – 5종 +
+iOS5 에서 풀스크린이 지원되지 않는점, iOS7 에서 화면이 더 넓어진 점을 고려하면 사파리 3종 ) * 2(아이패드별도)
+ 
+안드로이드 공통 : 5종
+크롬, 파이어폭스, 돌핀, 오페라, 네이버내장브라우저 – 나머지는 점유율 상 무시
+ 
+갤럭시 내장 : 5종
+2, 2업뎃안함(꽤많음), 3, 4, 탭시리즈 전기종 – 나머지는 대략 이 넘들과 호환
+ 
+제조사별 최신 기종 : 7종
+엘지 G Gp G2 뷰 4종 + 베가 최근순으로 3종 – 나머지 HTC, 넥서스등 다 쌩깜.
+이게 바로 최소 국내 스펙입니다. 비사이드는 일본 일을 하는데 그렇게 되면 위의 항목에 추가하여 기종별 내장 브라우저의 작동을 확인해야 하는데..
+
+구글 넥서스 시리즈 최근 순으로 : 3종
+소니는 OS별로 다 특이함. 진저, 아이스크림, 젤리빈 : 3종
+샤프, 도시바, 히타치 등 일본메이커 : 40여종..
+중국산 HTC, 하웨이, ZTE 등 중국 메이커 : 10여종..
+이 추가됩니다.
+
+예를 들어 소니의 이전 내장 브라우저 중 하나는 모두 손가락을 떼기 전에는 절대로 changedTouches 에 아무 것도 안들어오는 버그가 있습니다. 이것만으로도 위에 구축한 손가락별 이벤트는 개망입니다.
+
+아이스크림 이후의 기종들은 제법 안정화 되었다고는 하나 모바일브라우저의 세계는 정말 즐겁게 해줍니다. =.=;
+
+모쪼록 여러분의 건투를 빕니다.
+
+
+----
+
+
+Hello world
+D2 News
+D2 Program
+About D2
+
+D2에서 검색
+
+터치 이벤트를 이용한 사용자 제스처 분석
+2012.06.14|64065
+모바일 웹 페이지에서는 더블탭, 롱탭에 대한 이벤트가 없기 때문에 터치 이벤트로 사용자의 이벤트를 분석해야 합니다. 또한 플리킹이나 드래그 앤드 드롭 같은 기능을 구현할 때에도 마우스 이벤트가 아닌 터치 이벤트를 사용합니다. 이 글은 터치 이벤트에 대해 알아보고, 터치 이벤트로 사용자 제스처를 분석하는 방법을 설명합니다.
+
+터치 이벤트
+모바일 브라우저에서는 마우스 이벤트와 별도로 터치 이벤트를 지원한다. 터치 이벤트는 화면에 손가락을 터치했을 때 발생하는 이벤트로 다음 표와 같은 종류가 있다.
+
+표 1. 터치 이벤트의 종류
+
+이벤트 이름	설명
+touchstart	스크린에 손가락이 닿을 때 발생한다
+touchmove	스크린에 손가락이 닿은 채로 움직일 때 발생한다
+touchend	스크린에서 손가락을 뗄 때 발생한다
+touchcancel	시스템에서 이벤트를 취소시킬 때 발생한다. 정확한 발생 조건은 브라우저마다 다르다. 터치를 취소한다는 것에 대한 표준이 정의되지 않아 각 브라우저마다 다르게 발생하여 touchend 이벤트로 간주해도 무방하다.
+터치 이벤트와 마우스 이벤트는 몇 가지 차이가 있다.
+
+터치 이벤트는 사용자가 2, 3개의 손가락으로 화면을 조작할 때처럼 2개 이상의 개별 터치로 구성되는 경우가 있어 각 터치에 대한 정보를 모두 포함한다(안드로이드 3.0 버전 미만 브라우저 제외).
+정확한 좌표 값을 얻을 수 있는 마우스 이벤트와 달리 터치 이벤트는 손가락 접촉면이 크기 때문에 접촉 표면의 평균 좌표 값을 얻는다.
+Mouseover 이벤트에 해당하는 터치 이벤트가 없다.
+각 터치와 터치에 대한 정보는 이벤트 객체의 touches 속성과 targetTouches 속성, changedTouches 속성에 배열 형태로 저장되며, 터치한 손가락에 개수에 따라 배열의 크기가 결정된다. 멀티터치를 지원하지 않는 안드로이드 3.0 미만의 브라우저에서는 배열의 크기는 항상 1이다.
+
+배열에 저장된 객체는 Touch 타입의 객체이며 마우스 이벤트와 거의 차이가 없다. 아래 표는 Touch 객체의 속성을 정리한 표이다.
+
+표 2. Touch 객체 속성
+
+속성	설명
+identifier	인식 점을 구분하기 위한 인식 점 번호
+screenX	디바이스 화면을 기준으로 한 X 좌표
+screenY	디바이스 화면을 기준으로 한 Y 좌표
+clientX	브라우저 화면을 기준으로 한 X 좌표 (스크롤 미포함)
+clientY	브라우저 화면을 기준으로 한 Y 좌표 (스크롤 미포함)
+pageX	가로 스크롤을 포함한 브라우저 화면을 기준으로 한 X 좌표
+pageY	세로 스크롤을 포함한 브라우저 화면을 기준으로 한 Y 좌표
+target	터치된 DOM 객체
+참고
+
+현재 터치 이벤트는 WebKit 계열의 브라우저(사파리 모바일, 안드로이드 브라우저, 돌핀)에서만 지원하고 그 외 브라우저(오페라미니, 파이어폭스, 인터넷 익스플로러 모바일 등)에서는 지원하지 않는다.
+
+멀티터치는 touchstart 이벤트와 touchend 이벤트를 활용해서는 구별하기 힘들다. 손가락으로 터치하는 특성상 한 번에 두 개를 터치해도 시스템적으로 터치 시점에 차이가 있기 때문에 touchstart 이벤트와 touchend 이벤트 시점을 구별하기 힘들다. 멀티터치를 구현할 때에는 touchmove 이벤트를 활용하기를 권장한다.
+
+사용자 제스처 분석
+이번 장에서는 아래와 같은 기능을 터치 이벤트를 이용해 구현하는 방법을 알아본다.
+
+탭
+더블탭
+롱탭
+사용자 터치 방향 분석
+각 기능들을 구현하기 위해서 아래 코드처럼 터치 이벤트에 각각의 핸들러를 등록한다. 이 글의 코드 예제는 Jindo 프레임워크를 사용해서 작성했다.
+
+function onStart(e) {  
+}
+
+function onMove(e) {  
+}
+
+function onEnd(e) {  
+}
+
+function onCancle(e) {  
+}
+
+jindo.$Fn(onStart, this).attach(element, "touchstart");  
+jindo.$Fn(onMove, this).attach(element, "touchmove");  
+jindo.$Fn(onEnd, this).attach(element, "touchend");  
+jindo.$Fn(onCancle, this).attach(element, "touchcancle");  
+탭
+touchmove 이벤트가 발생하지 않고 touchstart 이벤트, touchend 이벤트의 순서로 이벤트가 발생할 때 탭이라고 판단한다.
+
+아래 그림은 탭 이벤트를 분석하는 플로차트이다.
+
+touchevent1
+
+그림 1 터치 이벤트를 이용한 클릭 이벤트 분석
+
+다음은 탭 이벤트를 분석하는 예제이다.
+
+var bStartEvent = false;  
+//touchstart 이벤트 발생 여부 플래그
+var bMoveEvent = false;  
+//touchmove 이벤트 발생 여부 플래그
+
+function onStart(e) {  
+    bStartEvent = true;
+}
+
+function onMove(e) {  
+    if(!bStartEvent) {
+        return;
+        //touchstart 이벤트가 발생하지 않으면 처리하지 않는다.
+    }
+    bMoveEvent = true;
+    //touchMove 이벤트 발생 여부를 설정한다.
+}
+
+function onEnd(e) {  
+    if(bStartEvent && !bMoveEvent) {
+        //클릭 이벤트로 판단한다.
+        alert('클릭 이벤트');     
+    }
+    //각 플래그 값을 초기값으로 설정한다.
+    bStartEvent = false;
+    bMoveEvent = false;
+}
+더블탭
+탭 이벤트가 두 번 발생하면 더블탭으로 판단한다. 두 개의 탭 이벤트 간의 기준 시간은 개발자가 설정할 수 있으며, 이 예제에서는 1000ms로 설정했다. 또한 손가락 면적이 넓어 정확히 같은 좌표를 누르기는 힘들기 때문에 같은 탭으로 인지하는 임계 값을 설정해 비교한다.
+
+아래 그림은 더블탭 이벤트를 분석하는 플로차트이다.
+
+touchevent2
+
+그림 2 터치 이벤트를 이용한 더블탭 이벤트 분석
+
+다음은 더블탭 이벤트를 분석하는 예제이다
+
+var bStartEvent = false; //touchstart 이벤트 발생 여부 플래그  
+var bMoveEvent = false; //touchmove 이벤트 발생 여부 플래그  
+var htClickInfo = { //더블탭을 판단하기 위한 마지막 탭 이벤트의 정보 해시 테이블  
+    sType : null,
+    nX : -1,
+    nY : -1,
+    nTime : 0
+}
+
+var nDoubleTapDuration = 1000; //더블탭을 판단하는 기준 시간(ms)  
+var nTapThreshold = 5; //탭을 판단하는 거리
+
+function initClearInfo() {  
+    htClickInfo.sType = null;
+}
+
+function onStart(e) {  
+    bStartEvent = true;
+}
+
+function onMove(e) {  
+    if(!bStartEvent) {
+        return; //touchstart 이벤트가 발생하지 않으면 처리하지 않는다.
+    }
+    bMoveEvent = true; //touchmove 이벤트 발생 여부를 설정한다.
+}
+
+function onEnd(e) {  
+    var nX = e.$value().changedTouches[0].pageX;
+    var nY = e.$value().changedTouches[0].pageY;
+    var nTime = e.$value().timeStamp;
+
+    if(bStartEvent && !bMoveEvent) {
+        //이전 탭 이벤트와 시간 차이가 1000ms 이하일 경우
+        if(htClickInfo.sType == 'click' && (nTime – htClickInfo.timeStamp) <= nDoubleTapDuration){
+            if( (Math.abs(htClickInfo.nX-nX) <= nTapThreshold) && (Math.abs(htClickInfo.nY-nY) <= nTapThreshold) ){
+                //더블탭으로 판단한다.
+            }
+        } else {
+            //탭 이벤트로 판단한다.
+            //현재 탭 이벤트들에 대한 정보를 업데이트한다.
+            htClickInfo.sType = 'click';
+            htClickInfo.nX = nX;
+            htClickInfo.nY =nY;
+            htClickInfo.nTime = nTime;
+        }   
+    } else {
+        //탭 이벤트가 아니므로 탭 이벤트 정보를 초기화한다.
+        initClearInfo();
+    }
+
+    //각 플래그 값을 초기값으로 세팅한다.
+    bStartEvent = false;
+    bMoveEvent = false; 
+}
+롱탭
+touchstart 이벤트 발생 후, 기준 시간 내에 touchmove 이벤트와 touchend 이벤트가 발생하지 않으면 롱탭으로 판단한다. 기준 시간은 개발자가 수정할 수 있으며, 이 예제에서는 1000ms로 설정했다.
+
+아래 그림은 롱탭을 분석하는 플로차트이다.
+
+touchevent3
+
+그림 3 터치 이벤트를 이용한 롱탭 이벤트 분석
+
+다음은 롱탭 이벤트를 분석하는 예제이다.
+
+function startLongTapTimer() { //롱탭을 판단하는 타이머를 실행하는 코드  
+    var self = this;
+    this.nLongTabTimer = setTimeout(function() {
+        //롱탭 이벤트로 판단한다.
+        alert('롱탭');
+        delete self.nLongTabTimer;
+    }, 1000)
+}
+
+function deleteLongTabTimer() {  
+    //활성화된 롱탭 타이머를 삭제하는 코드
+    if( typeof this.nLongTabTimer !== 'undefined') {
+        clearTimeout(this.nLongTabTimer);
+        delete this.nLongTabTimer;
+    }
+}
+
+function onStart(e) {  
+    startLongTapTimer(); //롱탭을 판단하기 위한 타이머를 활성화
+    bStartEvent = true;
+
+}
+
+function onMove(e) {  
+    if(!bStartEvent) {
+        return
+    }
+    deleteLongTabTimer(); //touchmove 이벤트가 발생했기 때문에 롱탭 타이머 삭제
+
+}
+
+function onEnd(e) {  
+    if(!bStartEvent) {
+        return
+    }
+    deleteLongTabTimer(); //touchend 이벤트가 발생했기 때문에 롱탭 타이머 삭제
+    bStartEvent = false;
+}
+사용자 터치 방향 분석
+플리킹이나 스크롤 기능을 구현하려면 사용자가 터치해서 움직이는 방향이 수직 방향인지 수평 방향인지 판단해야 한다. 사용자 움직임의 방향을 판단하는 기준은 다음과 같이 여러 가지가 있다.
+
+사용자가 기준거리(픽셀)를 움직였을 때 수직, 수평 방향의 움직인 거리를 비교하여 판단
+사용자가 기준거리(픽셀)를 움직였을 때 수직, 수평 방향의 움직인 거리를 기울기로 비교하여 판단.
+이 예제에서는 두 번째를 판단 기준으로 선택했다. 첫 번째 기준을 적용할 경우 수직과 수평 방향의 움직임 거리의 차이가 1픽셀과 같이 작을 경우에도 적용되기 때문에 기울기를 이용하여 판단하는 방법을 적용했다. 기준 기울기는 모바일 단말기의 화면 사이즈를 이용하여 설정한다.
+
+아래 그림은 단말기화면에서 사용자 움직임을 판단하는 기준기울기이다.
+
+touchevent4
+
+그림 4 단말기 화면에 따른 기준 기울기
+
+수평 방향 기준 기울기 = (모바일 단말기 세로 너비/2) / 모바일 단말기 가로 너비
+수직 방향 기준 기울기 = 모바일 단말기 세로 너비 / (모바일 단말기 가로 너비/2)
+사용자가 기준 거리 이상 움직였을 때, 움직인 수직, 수평 방향의 거리를 이용해 현재 사용자 움직임 기울기를 구하고, 그 기울기가 수평 방향 기준 기울기보다 크면 수직 방향으로 판단하고, 작으면 수평 방향으로 판단한다. 기울기를 판단하는 기준 거리는 개발자가 설정할 수 있으며, 이 예제에서는 25픽셀로 설정했다.
+
+참고
+
+가로 플리킹이나 스크롤에 적용할 때는 기울기를 판단하는 기준 거리를 4픽셀로 잡는 것이 좋다. 그 이상으로 값을 설정하면 기본 수직 스크롤이 발생하여 touchmove 이벤트나 touchend 이벤트가 발생하지 않을 수 있기 때문이다.
+
+아래 그림은 사용자 터치 움직임의 방향성을 판단하는 플로차트이다.
+
+touchevent5
+
+그림 5 터치 이벤트를 이용한 사용자 드래그 방향성 분석
+다음은 사용자의 움직임 방향을 판단하는 예제이다.
+
+var bStartEvent = false; //touchstart 이벤트 발생 여부 플래그  
+var nMoveType = -1; //현재 판단된 사용자 움직임의 방향  
+var htTouchInfo = { //touchstart 시점의 좌표와 시간을 저장하기  
+    nStartX : -1,
+    nStartY : -1,
+    nStartTime : 0
+};
+//수평 방향을 판단하는 기준 기울기
+var nHSlope = ((window.innerHeight / 2) / window.innerWidth).toFixed(2) * 1;
+
+function initTouchInfo() { //터치 정보들의 값을 초기화하는 함수  
+    htTouchInfo.nStartX = -1;
+    htTouchInfo.nStartY = -1;
+    htTouchInfo.nStartTime = 0;
+}
+
+//touchstart 좌표값과 비교하여 현재 사용자의 움직임을 판단하는 함수
+function getMoveType(x, y) {  
+    //0은 수평방향, 1은 수직방향
+    var nMoveType = -1;
+
+    var nX = Math.abs(htTouchInfo.nStartX - x);
+    var nY = Math.abs(htTouchInfo.nStartY - y);
+    var nDis = nX + nY;
+    //현재 움직인 거리가 기준 거리보다 작을 땐 방향을 판단하지 않는다.
+    if(nDis < 25) { return nMoveType }
+
+    var nSlope = parseFloat((nY / nX).toFixed(2), 10);
+
+    if(nSlope > nHSlope) {
+        nMoveType = 1;
+    } else {
+        nMoveType = 0;
+    }
+
+    return nMoveType;
+}
+
+function onStart(e) {  
+    initTouchInfo(); //터치 정보를 초기화한다.
+    nMoveType = -1; //이전 터치에 대해 분석한 움직임의 방향도 초기화한다.
+    //touchstart 이벤트 시점에 정보를 갱신한다.
+    htTouchInfo.nStartX = e.$value().changedTouches[0].pageX;
+    htTouchInfo.nStartY = e.$value().changedTouches[0].pageY;
+    htTouchInfo.nStartTime = e.$value().timeStamp;
+    bStartEvent = true;
+}
+
+function onMove(e) {  
+    if(!bStartEvent) {
+        return
+    }
+    var nX = e.$value().changedTouches[0].pageX;
+    var nY = e.$value().changedTouches[0].pageY;
+
+    //현재 touchmMove에서 사용자 터치에 대한 움직임을 판단한다.
+    nMoveType = getMoveType(nX, nY);
+
+    //현재 사용자 움직임을 수직으로 판단해 기본 브라우저의 스크롤 기능을 막고 싶으면 아래 코드를 사용한다.
+    if(nMoveType === 1) {
+        e.stop(jindo.$Event.CANCLE_DEFAULT);
+    }
+
+}
+
+function onEnd(e) {  
+    if(!bStartEvent) {
+        return
+    }
+
+    //touchmove에서 움직임을 판단하지 못했다면 touchend 이벤트에서 다시 판단한다.
+    if(nMoveType < 0) {
+        var nX = e.$value().changedTouches[0].pageX;
+        var nY = e.$value().changedTouches[0].pageY;
+        nMoveType = getMoveType(nX, nY);
+    }
+    bStartEvent = false;
+    nMoveType = -1; //분석한 움직임의 방향도 초기화한다.
+    initTouchInfo(); //터치 정보를 초기화한다.
+}
+마치며
+모바일 웹에서도 모바일 애플리케이션에서와 같은 사용자 경험을 요구하는 사례가 많아지면서, 더블탭이나 롱탭으로 동작하는 UI를 구현해야 하는 일이 있다. 그러나 모바일 웹 브라우저는 아직 더블탭 이벤트나 롱탭 이벤트를 지원하지 않는다. 이 글에서는 터치 이벤트로 사용자의 이벤트를 분석해 더블탭이나 롱탭을 구현하는 방법을 설명했다. 마찬가지로 터치 이벤트를 분석해 사용자 제스처를 분석하는 방법을 알아봤다.
+
+Tag
+자바스크립트모바일jindo터치이벤트제스처더블탭롱탭
+	
+오혜진|NHN 모바일Ajax팀2011년부터 모바일 웹개발을 시작하였고 수많은 삽질과 시행착오를 겪으면서 JMC를 개발해왔습니다. 앞으로JMC 유저분들이 쉽고 빠르게 모바일 웹개발을 하실 수 있도록 노력을 기울이겠습니다.
+글쓴이의 다른 글 보기
+
+NAVER
+
+facebook
+
+URL
+관련글
+
+썸네일
+[TECH@NHN] 자바스크립트 성능 이야기 책 출간
+썸네일
+[TECH@NAVER] 쉽고 빠른 모바일 웹 UI개발 책 출간
+썸네일
+Front-End 개발자들을 위한 제2회 'Helloworld 오픈 세미나'를 개최합니다.
+썸네일
+네이티브앱에서 웹앱으로: 모바일 웹앱의 현주소
+댓글3
+새로고침
+
+로그인 정보진와이스
+댓글 입력
+주제와 무관한 댓글, 악플은 삭제될 수 있습니다.
+현재 입력한 글자수0/전체 입력 가능한 글자수400
+등록
+재옵빠
+옵션 열기
+참 예쁘세요~ ㅋㅋ
+2012-06-16 15:22
+답글0공감/비공감공감0비공감3
+치토
+옵션 열기
+모바일웹 개발할때 큰 도움이 될 것 같네요^^ 감사합니다~
+2012-06-14 15:38
+답글0공감/비공감공감1비공감0
+윷
+옵션 열기
+와.~ 깔끔한 정리 감사합니다. :D
+2012-06-14 15:30
+답글0공감/비공감공감0비공감0
+1현재 선택된 페이지
+NAVER Developers
+NAVER TECH CONCERT
+DEVIEW
+OpenSource
+D2 STARTUP FACTORY
+Copyright © NAVER Corp. All Rights Reserved.
+

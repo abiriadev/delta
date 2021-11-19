@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="3d.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./../revolution.css" type="text/css" media="all" />
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./../revolution.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="./../../jsTest/underscore.js/underscore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./../../jsTest/underscore.js/map.js" type="text/javascript" charset="utf-8"></script>
+  
+  
+  
+  
+  <style type="text/css" media="all">
+    div {
+      background-color: yellowgreen;
+      
+      position: absolute;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const makeRectangle = (
+      left, top, width, height
+    ) => {
+      const rect = document.createElement('div')
+
+      document.body.appendChild(
+rect)
+
+      with(rect) {
+        style.position = 'absolute'
+      }
+
+      styleadd(rect.style, _.map({
+        left: left,
+        top: top,
+        width: width,
+        height: height,
+      }, value => toPixel([value])))
+
+
+strfy(rect.style)
+
+      return rect
+    }
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+
+        makeRectangle(100, 100, 100, 100)
+      
+        makeRectangle(100, 300, 200, 50)
+
+    })
+  </script>
+</head>
+
+<body>
+  
+</body>
+
+</html>

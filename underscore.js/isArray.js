@@ -1,0 +1,1 @@
+_.isArray = list => list.hasOwnProperty('length')

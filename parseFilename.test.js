@@ -1,0 +1,14 @@
+console.log(
+  executeEach(
+    pipeline(
+      parseFilename,
+      JSON.stringify,
+      log
+    )
+  )([
+    'asd.wj',
+    'asdwj',
+    'asd...wj',
+    'a.s.d.wwwwh.wuj',
+  ])
+)

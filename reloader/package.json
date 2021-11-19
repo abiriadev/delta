@@ -1,0 +1,1 @@
+{"name":"reloader","version":"1.0.0","description":"","main":"reloader.js","scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"keywords":[],"author":"","license":"ISC","bin":{"reloader":"bin.js","bin1":"/data/data/io.tempage.dorynode/files/lib/node_modules/globy/bins/bin"}}

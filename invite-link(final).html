@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./tests/init.css" />
+  <style type="text/css" media="all">
+    body {
+      overflow: scroll;
+    }
+    
+    .grid {
+      border: 4px solid;
+
+      display: grid;
+      grid-template-columns: minmax(auto, 1fr) auto;
+      /* grid-template-rows: auto; */
+    color: rgb(112, 111, 201);
+      font-size: 20px;
+    
+      
+      padding: 0;
+      
+      gap: 0;
+    }
+
+    .item {
+      height: 1.4em;
+    }
+
+    .item:first-child {
+      /* background-color: darkblue; */
+    
+      padding-right: calc(1.4em / 2);
+    
+      background-image:
+        linear-gradient(-135deg,
+          transparent calc(1.414213562373 / 4 * 1.4em),
+          currentColor 0),
+        linear-gradient(-45deg,
+          transparent calc(1.414213562373 / 4 * 1.4em),
+          currentColor 0);
+
+      background-position: top, bottom;
+      background-size: 100% 50%;
+      background-repeat: no-repeat;
+      /* background-color: hsl(180, 60%, 94%); */
+      background-clip: border-box;
+    
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item:first-child>img {
+      max-height: 80%;
+
+      margin: 0 .2em;
+    }
+    
+    .item:last-child {
+      color: white;
+
+      text-align: center;
+      
+      line-height: calc(1.4em);
+      font-weight: 800;
+    
+      padding: 0em .2em;
+    }
+  </style>
+  <title></title>
+</head>
+
+<body>
+  <a href="#" class="grid">
+    <div class="item">
+      <img src="./resources/images/discord.png" alt="discord" />
+    </div>
+    <div class="item">discord.gg/Arw722g</div>
+  </a>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" type="text/css" media="all" />
+  
+  <link rel="stylesheet" href="revolution.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <script src="revolution.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    @keyframes turn{
+      to {
+        transform: rotate(1turn);
+      }
+    }
+    
+    .spinner {
+      width: 200px;
+      height: 200px;
+      color: deepskyblue;
+      display: flex;
+      font-size: 5em;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 50%;
+      background-image:
+        radial-gradient(
+        circle closest-side,
+        black 70%,
+        transparent 0),
+        conic-gradient(
+        darkblue,
+        currentColor 100%,
+        transparent 0);
+    
+      animation: turn 2s infinite linear;
+    }
+
+    .spinner>.cap {
+      width: 30px;
+      height: 30px;
+      background-color: currentColor;
+   top: 0;
+   margin: 0 auto;
+    }
+  </style>
+  <script>
+    load(() => {
+      const spinner = cls('spinner')
+      const turn = () => {
+        let time = 12
+        let percentage = 0
+        const key = setInterval(() => {
+          percentage += 0.5
+          spinner.style.background = `radial-gradient(circle closest-side, white 95%, transparent 0), conic-gradient(skyblue, deepskyblue ${percentage}%, transparent 0)`
+
+          if (percentage >= 100) clearInterval(key)
+        }, 10)
+      }
+      
+      
+const cap =cls('cap')
+
+//setToDeg(cap, 200, 0)
+
+/*const animation = revolutionTemplate
+(cap)
+(100, 15)
+({
+  deltadeg: 0,
+  rate: 1,
+  delay: 1,
+})*/
+
+     // doc.body.onclick = turn
+    })
+  </script>
+</head>
+
+<body>
+  <div class="spinner orbit">
+    <div class="cap planet"></div>
+  </div>
+</body>
+
+</html>

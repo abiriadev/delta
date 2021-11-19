@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css" media="all">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .picture {
+
+      box-sizing: content-box;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      background: rgba(58, 199, 210, .4);
+      border: 10px solid pink;
+
+      border-radius: 50%;
+      resize: horizontal;
+
+
+    }
+
+    img[alt="tree"] {
+      opacity: .7;
+
+      width: 100%;
+      resize: horizontal;
+      /* min-height: 100%; */
+    }
+
+
+    .e {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(58, 199, 210, .4);
+      /* z-index: 10; */
+      border: 10px solid pink;
+      content: '';
+      border-radius: 50%;
+    }
+
+    article {
+      width: 150px;
+      height: 100px;
+      overflow: scroll;
+      resize: both;
+      border: 3px solid green;
+      position: relative;
+    }
+
+    article::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      /* top: 0; */
+      right: 0;
+      /* left: 0; */
+      z-index: 1;
+      /* border: 3px solid red; */
+
+      width: 10px;
+      height: 10px;
+      /* background: gray; */
+      cursor: ew-resize;
+      background-image: linear-gradient(-45deg, #7755cc 50%, transparent 0)
+    }
+
+    input[type="range"] {
+      width: 300px;
+
+
+    }
+
+    .b {
+      width: 200px;
+      height: 80px;
+      background-color: #58a;
+      /* opacity: 1; */
+      background-image: linear-gradient(hsla(0, 0%, 100%, 0.2), transparent);
+    }
+
+    /* article::-webkit-resizer {
+      pointer-events: painted;
+    } */
+
+    .bor {
+      width: 300px;
+      height: 200px;
+
+      margin: 40px;
+
+      background: hsla(140, 50%, 70%, 0.5);
+      box-shadow:
+        10px 10px 0px 10px black inset,
+        -10px -10px 0 10px orange inset,
+        10px 10px 0px 10px black,
+        -10px -10px 0 10px orange;
+
+    }
+
+    .outlinebox {
+      width: 320px;
+      height: 200px;
+
+      background-color: yellowgreen;
+
+      margin: 30px;
+      background-clip: border-box;
+
+    }
+
+    .box1 {
+      outline: 15px double deeppink;
+
+      border: 10px dashed rgba(0, 0, 0, 0.4);
+
+      outline-offset: -10px;
+      background-image: linear-gradient(60deg,
+          transparent 50%,
+          gold 0);
+    }
+
+    .box2 {
+      background: #655;
+      outline: 3px dashed #ddd;
+      outline-offset: -20px;
+      border-radius: 10px;
+
+
+      font-family: "Goudy Old Style";
+
+      font-weight: 200;
+      font-style: italic;
+      font-size: 3em;
+      line-height: 200px;
+      color: white;
+      text-align: center;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const slider = document.querySelector('input[type="range"]')
+      const img = document.querySelector('.picture')
+      const box = document.querySelector('.b')
+      slider.oninput = e => {
+        console.log(JSON.stringify(slider.value))
+        //console.log(slider)
+        img.style.width = slider.value * 3 + "px"
+
+        img.style.height = slider.value * 3 + "px"
+        box.style.backgroundImage = `linear-gradient(hsla(0, 0%, 100%, ${slider.value/100}), transparent)`
+
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <p>zbaj</p>
+  <input type="color" name="" id="" value="" />
+  <div class="picture">
+    <img src="./20210103_210929.jpg" alt="tree" width="200" height="200" />
+  </div>
+  <input type="range" name="" id="" value="" />
+  <div class="bor"></div>
+  <article class="a">
+    lorem I just want you to know I have been in a few days and then the other day that I have been in a relationship between the United States and its territories and its own unique style is the best thing thing I have been in a relationship between the United States and its territories and its own right now in but I don't think so too many people are not going to be in town for the next few years back in town and its territories and its own right now I don't know how to use the a's few have in the past year has been a long day and its own unique style is the best thing to do it again and its own right now I'm just a little bit of time and its own right now I'm just a little bit of time and its own right now I'm just a little bit of time and its own right now now I'm I'm just a little bit of time and its own right now I'm just a little bit of time and its own right now I'm just a little bit of time and its own right now I'm just a little bit of time and its own right now I'm just a little bit more than one of the best thing to do it again and its own right now I'm just a little bit of time and its own right now I'm just a few minutes to do it again and its own right now I'm just a little bit of time and its own right now
+  </article>
+  <div class="b"></div>
+  <input type="color" name="" id="" value="1" />
+  <div class="outlinebox box1"></div>
+  <div class="outlinebox box2">love ♡ you</div>
+</body>
+
+</html>

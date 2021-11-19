@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css" media="all" href="./../init.css">
+    
+  </style>
+  <style type="text/css" media="all">
+
+    .tooltipbox {
+      width: 300px;
+      height: 120px;
+      position: relative;
+      border: 8px solid currentColor;
+      border-radius: 20px;
+
+      color: #ff40a9;
+
+      /* font */
+      font-size: 41px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: calc(120px - 16px);
+      text-align: center;
+
+
+    }
+
+    .tooltipbox::before {
+      width: 40px;
+      height: 40px;
+      content: '';
+        /*#ff40a9*/
+      
+      /*hsl(140, 67%, 70%)*/
+      position: absolute;
+
+      left: 50px;
+      bottom: -48px;
+      transform-origin: 0 0;
+      transform: rotate(-45deg);
+    
+      background-image: linear-gradient(
+      45deg,
+      #ff40a9 50%,
+      transparent 0
+      );
+      
+    }
+
+    .tooltipbo::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      /* top: 0; */
+      bottom: -20px;
+      height: 20px;
+      background-color: hsla(270, 60%, 90%, .5);
+      color: inherit;
+      background-image:
+        linear-gradient(-135deg,
+          transparent calc(1.414 / 2 * 20px -8px),
+          currentColor 8px,
+          transparent 0),
+        linear-gradient(135deg,
+          transparent calc(1.414 / 2 * 20px -8px),
+          currentColor 8px,
+          transparent 0);
+
+
+      background-size: 50% 100%;
+      background-position: left, right;
+      background-repeat: no-repeat;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tooltipbox">hello, tooltip</div>
+</body>
+
+</html>

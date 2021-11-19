@@ -1,0 +1,64 @@
+
+@import './vars';
+@import './mixins.scss';
+
+blockquote {
+  @extend p;
+  @extend %place;
+  
+  bottom: $a1999;
+  background: {
+    image: url($var);
+  }
+}
+
+
+$var: 20px;
+
+header[role="banner"]
+h1 
+{
+  font:
+  {
+    size: 54px;
+    
+    family: Arial;
+    weight:
+    700;//@;@;,@,
+  }
+  %place {
+    color: red;
+  }
+}
+
+$mainColor: red;
+
+
+@mixin asd(
+  $color,
+  $opt: 28px,
+) {
+  border: {
+    color: $color;
+    radius: 30%;
+    style: dashed;
+    width: $opt;
+  }
+  box: {
+    sizing: border-box;
+  }
+  background: {
+    color: $color;
+  }
+}
+
+p {
+  @include asd(#779, $var);
+  
+  box-sizing: padding-box;
+  
+  ul {
+    @include test1;
+  }
+}
+/*!shjbwvw*/

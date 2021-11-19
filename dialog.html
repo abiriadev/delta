@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      background-color: white;
+    }
+
+
+    @keyframes dialog {
+      from {
+        opacity: 0;
+        transform: scale(0);
+      
+        animation-play-state: paused;
+
+      }
+
+50%{
+            animation-play-state: paused;
+
+}
+      to {
+          animation-play-state: paused;
+
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    dialog {
+      top: calc(50% - 150px);
+      margin: auto;
+      width: 200px;
+      height: 300px;
+
+      border: 0 solid deeppink;
+      border-top-width: 10px;
+
+      border-radius: 10px;
+      text-align: center;
+
+      font-size: 2em;
+
+      display: grid;
+      grid-template-rows: 2fr 5fr;
+
+      animation: 1s alternate-reverse infinite;
+    animation-play-state: paused;
+      animation-name: dialog;
+    }
+
+    dialog>* {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+    dialog>h3 {
+      color: black;
+      font-size: 1.4em;
+
+      padding-top: .6em;
+    }
+    dialog>p {
+      color: gray;
+      font-size: .9em;
+      padding: 5% 12%;
+      text-align: left;
+      padding-top: 0;
+    }
+    dialog::backdrop {
+      background-color: rgba(40, 40, 40, .5);
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      const dialog = doc.getElementsByTagName('dialog')[0]
+      dialog.showModal()
+      dialog.onclick = ev => {
+        //dialog.style.display="none"
+      }
+
+      doc.body.onclick = counter((ev, i) => {
+        i % 2 ? (() => {
+      //animation-direction: reverse;
+          dialog.style.animationPlayState = 'paused'
+
+
+        })() : (() => {
+
+          dialog.style.animationPlayState = 'running'
+
+        })()
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <dialog>
+    <h3>
+      dialog!
+    </h3>
+    <p>to hide this, click anywhere except this!</p>
+  </dialog>
+</body>
+
+</html>

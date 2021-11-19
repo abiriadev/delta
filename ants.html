@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    @keyframes ants {
+      to {
+        /* border-style: none; */
+        background-position: 100% 100%;
+      }
+    }
+
+    .ants {
+      width: 312px;
+      height: 183px;
+
+      border: 1px solid transparent;
+      padding: 1em;
+      border-radius: 5px;
+      background:
+      
+              linear-gradient(black, black) padding-box,
+
+        repeating-linear-gradient(-45deg,
+          black 0 25%, white 0 50%) 0 / .6em .6em;
+
+      animation: ants 12s linear infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ants">
+  </div>
+</body>
+
+</html>

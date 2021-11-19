@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    @keyframes spin {
+      to {
+        transform: rotateZ(0deg);
+
+        background-image:
+          radial-gradient(white 0 58%, transparent 0),
+          conic-gradient(rgb(54, 133, 250) 20% 80%, transparent 0);
+
+      }
+
+      from {
+        transform: rotateZ(360deg);
+
+        background-image:
+          radial-gradient(white 0 58%, transparent 0),
+          conic-gradient(rgb(54, 133, 250) 20% 100%, transparent 0);
+
+      }
+    }
+
+    .spinner {
+      background-color: white;
+      border-radius: 50%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+    .spinner::before {
+      content: '';
+
+      /* position: absolute; */
+
+      /* left: 0; */
+      top: 0;
+
+      width: 80%;
+      height: 80%;
+
+      border-radius: 50%;
+
+      /* background-color: yellow; */
+
+      background-image:
+        radial-gradient(white 0 58%, transparent 0),
+        conic-gradient(rgb(54, 133, 250) 20% 80%, transparent 0);
+
+      animation: spin 1s infinite;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+  </script>
+</head>
+
+<body>
+  <div class="spinner x100"></div>
+</body>
+
+</html>

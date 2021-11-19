@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <script src="./../touchLab/swipe.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    @keyframes turn-over {
+      from {
+        transform: rotateX(0deg);
+      }
+
+      to {
+        transform: rotateX(-180deg);
+      }
+    }
+
+    body {
+      perspective: 300px;
+    }
+
+    .counter {
+      background-color: orange;
+      height: 150px;
+      border-radius: 20%;
+      width: 100px;
+    }
+
+    .page {
+      width: 100px;
+      height: 50%;
+      background-color: brown;
+
+      border-radius: 20% 20% 0 0;
+      animation: .7s ease;
+
+      transform-origin: center bottom;
+    }
+
+    input:checked+.counter>.page {
+      animation-name: turn-over;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      swipe(document.body, ".counter")
+
+      const counter = document.getElementsByClassName('counter')[0]
+      const page = counter.querySelector('.page')
+
+      counter.addEventListener('swipe', ev => {
+
+            page.style.animationName = 'none';
+
+        switch (ev.detail.diraction) {
+          case 'up':
+            page.style.animationName = 'turn-over';
+            //animationDirection='reverse';
+            break;
+          case 'down':
+            page.style.animationName = 'turn-over';
+
+            break;
+        }
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <input type="checkbox" name="" id="" />
+  <div class="counter">
+    <div class="page"></div>
+  </div>
+</body>
+
+</html>

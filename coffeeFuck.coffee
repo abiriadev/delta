@@ -1,0 +1,1 @@
+console.log ([97..97+5]).map((code)->String.fromCodePoint(code))

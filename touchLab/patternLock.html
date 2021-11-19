@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+ 
+ <script src="angle.js" type="text/javascript" charset="utf-8"></script>
+ 
+  <script src="./../revolution.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    .patternLock {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-row;
+      repeat(3, 1fr);
+
+      width: 300px;
+      height: 300px;
+
+      gap: 130px;
+    }
+
+    .patternLock>.point {
+      background-color: aquamarine;
+      border-radius: 50%;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      const patternQuee = []
+
+      const drowline = (origin, target) => {
+        const line = document.createElement('div')
+
+        const xy = getDocumentPosition(origin)
+
+        line.style.height = toPixel(Math.sqrt(
+          Math.pow(target.x - xy.x, 2) +
+          Math.pow(target.y - xy.y, 2)
+        ))
+        
+        styleadd(
+          line.style,
+          {
+            left: 0,
+            top:0 ,
+            width: '1px',
+            position:'absolute',
+            backgroundColor: red,
+            transformOrigin: 'bottom center',
+            transform: `totateZ(${calcAngle(xy, target)}deg)`,
+          }
+        )
+      }
+      const pointArr = document.getElementsByClassName('item')
+
+     Array.prototype.slice.call(pointArr).forEach(point => {
+        point.ontouchmove = ev => {
+          patternQuee.push(ev.target)
+        }
+      })
+      while (true) {
+        drowline()
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div class="patternLock">
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+  </div>
+</body>
+
+</html>

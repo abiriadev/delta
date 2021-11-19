@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="canvas" type="text/css" media="all" />
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+  <script src="canvas.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      background-color: initial;
+      overflow: hidden;
+
+      /* display: flex; */
+      /* align-items: flex-start; */
+
+
+      border: 0px solid turquoise;
+    }
+
+    canvas {
+      border: inherit;
+      border-color: red;
+
+      position: absolute;
+      top: 0;
+    }
+
+    button.addCanvas {
+      /* min-width: 40px; */
+      /* min-height: 40px; */
+
+      /* max-width: 250px; */
+      /* max-height: 250px; */
+
+      /* width: 10%; */
+      /* height: 10px; */
+
+      width: 80px;
+      height: 80px;
+
+      box-sizing: padding-box;
+      border-radius: 50%;
+      border: 18px solid transparent;
+
+      box-shadow: 0 0 0 2px currentColor inset;
+
+      font-size: 30px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: silver;
+      background-color: transparent;
+
+      position: fixed;
+      right: -1vmin;
+      top: -1vmin;
+
+      z-index: 20;
+    }
+
+    button.addCanvas::before1 {
+      content: '';
+      /* width: 140%; */
+      /* height: 140%; */
+      border: 2px solid red;
+
+      position: absolute;
+      left: -30%;
+      top: -30%;
+      right: -30%;
+      bottom: -40%;
+
+
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    function buttonLogic() {
+
+      try {
+        const button = document.getElementsByClassName('addCanvas')[0]
+
+        button.addEventListener('click', ev => {
+          addNewCanvas()
+        })
+      } catch (err) {
+        alert(err)
+      }
+
+    }
+
+    function addNewCanvas() {
+      const canvas = document.createElement('canvas')
+      document.body.appendChild(canvas)
+      adjustToViewport(canvas)
+      const ctx = canvas.getContext('2d')
+      ctx.strokeStyle = 'red'
+      ctx.strokeRect(10, 10, 30, 40)
+    }
+
+    function CoordinatesGrid(ctx) {
+      this.ctx = ctx
+      this.originX = getViewportWidth() >> 1
+      this.originY = getViewportHeight() >> 1
+      this.interval = 1
+    }
+    Object.assign(CoordinatesGrid.prototype, {
+      drawAxis() {
+        const vw = getViewportWidth()
+        const vh = getViewportHeight()
+
+        this.ctx.strokeStyle = 'gray'
+
+        this.ctx.beginPath()
+
+        this.ctx.moveTo(0, vh / 2)
+        this.ctx.lineTo(vw, vh / 2)
+
+        this.ctx.moveTo(vw / 2, 0)
+        this.ctx.lineTo(vw / 2, vh)
+
+        this.ctx.stroke()
+      },
+
+      adjustToViewport() {
+        adjustToViewport(this.ctx.canvas)
+      },
+
+      relativeLineTo(x, y) {
+        this.ctx.lineTo(
+          this.originX + x,
+          this.originY - y
+        )
+      },
+
+      drawGraph(f) {
+        try {
+          this.ctx.strokeStyle = 'red'
+          this.ctx.beginPath()
+          //Math.asin
+          //x =>x**2 * 1 / 70-200
+          //Math.sin(x/20)* 100
+          //(Math.pow(x, 3) * Math.pow(x, 2)) / 8000
+          // x => 130 * Math.asin(x / 130)
+
+          this.ctx.lineCap = [
+            'butt',
+            'square',
+            'round',
+          ][2]
+
+
+          const buffer = new ArrayBuffer(((((getViewportWidth()>>1)<<2)>>5)&254)) //- 2 ** 0)
+          let X = new Int16Array(buffer)
+
+          let Ti = 0
+            
+          X = X.map((byte, i, Tarr)=>{
+            return (i-(Tarr.length>>1))<<5
+          })
+
+          //const X = range(...plusminus(getViewportWidth() >> 1).reverse())
+          const Y = X.map(f)
+          log(Y instanceof Float64Array)
+          forEachBoth(X, Y, (x, y, i) => {
+            this.relativeLineTo(x, y)
+          })
+
+          this.ctx.stroke()
+        } catch (err) {
+          console.error(err)
+        }
+      },
+    })
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      buttonLogic()
+
+      const [canvas, ctx] = getCanvas()
+
+      const bodyWt = Math.trunc(document.documentElement.clientWidth)
+      const bodyHt = Math.trunc(document.documentElement.clientHeight)
+
+      const bodyWtHalf = bodyWt >> 1
+      const bodyHtHalf = bodyHt >> 1
+
+      ///////////₩////////////////
+
+
+      const f = x => x ** 2 * 1 / 70 - 200
+
+      const grid = new CoordinatesGrid(ctx)
+      grid.adjustToViewport()
+      grid.drawAxis()
+      grid.drawGraph(f)
+
+    })
+  </script>
+</head>
+
+<body onclick="alert">
+  <button title="add new canvas" class="addCanvas">+</button>
+  <canvas width="300" height="500">
+  </canvas>
+</body>
+
+</html>

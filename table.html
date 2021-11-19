@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css" media="all">
+    * {
+      background-clip: content-box;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vm;
+      height: 100vh;
+min-height: 100vh;
+      display: flex;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      
+      /* border: 5px solid red; */
+    }
+
+    s {
+      background-color: #999;
+    }
+
+    .q {
+      width: 2em;
+      font-size: 50px;
+      height: 2em;
+      /* font: 900; */
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      line-height: 2em;
+
+      /* align-self: center; */
+      /* vertical-align: middle; */
+
+      /* margin: 50vh auto 0; */
+      /* transform: translateY(-50%); */
+
+      margin: auto;
+
+      display: none;
+      background: darkblue;
+    }
+
+    .table-box {
+      margin: 0;
+      height: min-content;
+     /* display: inline-block; */
+      box-sizing: border-box;
+    }
+    
+    .table-box > p {
+      color: #765858;
+      font-size:  30px;
+      line-height:1em;
+      font-weight: 600;
+    }
+
+    .table {
+
+      border: 3px solid #765858;
+      border-radius: 15px;
+
+      display: inline-block;
+      margin: auto;
+      /* padding: 10px; */
+      /* background: red; */
+      width: auto;
+
+
+      /* display: none; */
+    }
+
+    .tr {
+      display: block;
+      border: 2px solid #8dd4cb;
+      color: #8dd4cb;
+      border-radius: 0.3em;
+      width: auto;
+      height: auto;
+      font-size: 25px;
+      text-align: center;
+      line-height: 1.6em;
+      margin: 0.26em;
+      padding: 0 0 0 10px;
+    }
+
+    .th {
+      width: 2.6em;
+      height: 1.2em;
+      font-size: 1em;
+      padding: 0;
+      line-height: 1.2em;
+      color: white;
+      display: inline-block;
+      border-radius: 0.2em;
+      margin: 0 5px 0 0;
+      background-color: #4abbdf;
+      /* border: 3px dashed darkblue; */
+    }
+
+    .th:first-child {
+      margin-left: 8px;
+    }
+
+    .th:last-child {
+      margin: 0 11px 0 0;
+    }
+
+    .tr:first-child {}
+
+    .th:nth-child(2) {}
+
+    .td {
+      background: #bbb;
+    }
+    
+    .table-box:first-child{
+/* background: #fed; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="table-box">
+    <p>table</p>
+    <div class="table">
+      <div class="tr">
+        tr
+        <div class="th">th</div>
+        <div class="th">th</div>
+        <div class="th">th</div>
+      </div>
+      <div class="tr">
+        tr
+        <div class="td th">td</div>
+        <div class="td th">td</div>
+        <div class="td th">td</div>
+      </div>
+      <div class="tr">
+        tr
+        <div class="td th">td</div>
+        <div class="td th">td</div>
+        <div class="td th">td</div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <div class="q">Q</div>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "add",
+  "version": "1.0.0",
+  "description": "add numbers",
+  "main": "add.js",
+  "scripts": {
+    "start": "node add.js",
+    "build": "npm i -g"
+  },
+  "keywords": [
+    "add"
+  ],
+  "author": "Abiria",
+  "license": "ISC",
+  "bin": {
+    "add": "bin.js"
+  }
+}

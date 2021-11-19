@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    body {
+      color: white;
+      flex-direction: column;
+    
+    }
+    
+    h1 {
+      margin-bottom: 30%;
+    
+      margin-top: -50%;
+    }
+
+    .result {
+      display: block;
+      width: 200px;
+      height: 100px;
+      border: 3px solid white;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    String.prototype.wrap = function(tag) {
+      return `<${tag}>${this}</${tag}>`
+    }
+
+    const data = [
+      {
+        primary: "263830",
+        name: "abiria",
+        age: "17",
+        join: "lorem",
+        lastlog: "yesterday",
+      },
+      {
+        primary: "38173290",
+        name: "brue",
+        age: "null",
+        join: "rem",
+        lastlog: "yesterday",
+
+      },
+      {
+        primary: "086168",
+        name: "coshamen",
+        age: "16",
+        join: "undefined",
+        lastlog: "null",
+      },
+      {
+        primary: "1519",
+        name: "mathlabJ",
+        age: "15",
+        join: "fu11",
+        lastlog: "today",
+      },
+      {
+        primary: "1180314",
+        name: "pipi",
+        age: "12",
+        join: "false",
+        lastlog: "2days ago",
+      },
+      {
+        primary: "162920",
+        name: "B.C.I",
+        age: "17",
+        join: "dasung",
+        lastlog: "abirial",
+      },
+      {
+        primary: "08542",
+        name: "my freind",
+        age: "18",
+        join: "asfgj",
+        lastlog: "ahuusmnba",
+      },
+      {
+        primary: "126114",
+        name: "sudol",
+        age: "21",
+        join: "true",
+        lastlog: "ly ago",
+      },
+      {
+        primary: "57868",
+        name: "gangG",
+        age: "28",
+        join: "false",
+        lastlog: "null",
+      },
+      {
+        primary: "787297",
+        name: "YD",
+        age: "35",
+        join: "false",
+        lastlog: "null",
+      },
+      {
+        primary: "177109",
+        name: "mollang",
+        age: "34",
+        join: "true",
+        lastlog: "last m",
+      },
+    ]
+
+    window.onload = () => {
+      const result = document.getElementsByClassName('result')[0]
+
+      const table = document.createElement('table')
+      table.border = "1"
+      table.appendChild(document.createElement('thead'))
+      table.appendChild(document.createElement('tbody'))
+      Object.keys(data[0]).forEach(field => {
+        const th = document.createElement('th')
+        th.innerText = field
+        table.children[0].appendChild(th)
+      })
+      data.forEach(
+        row => {
+          const tr = document.createElement('tr')
+          for (const key in row) {
+            const td = document.createElement('td')
+            td.innerText = row[key]
+            tr.appendChild(td)
+          }
+          table.children[1].appendChild(tr)
+        }
+      )
+      result.innerText ? result.innerText = ""
+      result.appendChild(table)
+    }
+  </script>
+</head>
+
+<body>
+  <h1>대충 만들어논 DB클라이언트</h1>
+  <!--호스팅 서버에서 DB에 접근할 수 없거나 귀찮은 경우 또는 테스트 목적으로 사용한다-->
+  <!--(SELECT로 조회만 가능하기 때문에, 인젝션이니 뮈니 해서 뻘짓할 생각은 빠르게 접자!)-->
+  <form action="/" method="post" accept-charset="utf-8">
+    <label>REQUEST: <input type="search" name="query" id="" value="" placeholder="SQL쿼리를 입력하세요" autofocus required maxlength="200" /></label>
+    <input type="submit" name="request" id="request" value="요청" />
+    <output class="result">
+      nothing/no/none result yet
+    </output>
+  </form>
+</body>
+
+</html>

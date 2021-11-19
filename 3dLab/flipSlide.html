@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+    <script src="./../touchLab/swipe.js" type="text/javascript" charset="utf-8"></script>
+
+  <style type="text/css" media="all">
+    body {
+      perspective: 300px;
+    }
+
+    @keyframes flip {
+      from {
+        transform: rotateX(0deg);
+      }
+
+      to {
+        transform: rotateX(-360deg);
+      }
+    }
+
+    @keyframes swap-down {
+      from {
+        z-index: 10;
+      }
+
+      50% {
+        z-index: 10;
+      }
+
+      51% {
+        z-index: -10;
+      }
+    }
+
+    .slide {
+      background-color: orange;
+      z-index: 10;
+    }
+
+    .new {
+      transform: rotateX(180deg);
+    }
+
+    .slidewindow {
+      
+      
+      display: flex;
+      
+      font-size: 4em;
+
+      transform-style: preserve-3d;
+
+      /* animation: flip 2s infinite linear; */
+      width: min-content;
+      
+      width: 200px;
+      height: 200px;
+      
+      transition: 1s ease-out;
+      
+      /* border: 4px solid green; */
+    }
+
+    .slidewindow>* {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      backface-visibility: hidden;
+    }
+  </style>
+  
+  <script type="text/javascript" charset="utf-8">
+    window.onload =()=>{
+      swipe(document.body, '.slidewindow')
+      
+      const slidewindow =document.querySelector('.slidewindow') 
+      
+      slidewindow
+      .addEventListener
+      ('swipeing', ev => {
+        slidewindow.style.transition = "none"
+        slidewindow.style.transform = `rotateX(${ev.detail.relY / 2}deg)`
+      })
+      
+      const inertia =ev => {
+                   console.log(JSON.stringify(ev.detail) + "  Ccc")
+                 slidewindow.style.transition = "1s ease-out"
+
+                slidewindow.style.transform = `rotateX(${ev.detail.relY * 2}deg)`
+      }
+      
+      slidewindow.addEventListener('swipecancel', inertia)
+      slidewindow.addEventListener('swipe', inertia)
+
+    }
+  </script>
+</head>
+
+<body>
+  <div class="slidewindow textbox">
+    <div class="slide x200">lorem</div>
+    <div class="new x200">ipsum</div>
+  </div>
+  </div>
+</body>
+
+</html>

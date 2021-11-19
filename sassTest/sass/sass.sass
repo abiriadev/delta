@@ -1,0 +1,30 @@
+$pink: #e71
+
+@mixin test($color,$bg:red,)
+
+  color: $color
+  border: 
+    style: solid
+  
+
+
+p
+  font-size: 12px
+  color: $pink
+
+  strong
+    
+    text-decoration: none
+    
+  .header
+    color: $pink
+    
+    nav.cls ul
+      display: flex
+      
+      li
+        @include test(12px)
+        flex: 1
+    
+  &:hover
+    border: 1px solid $pink

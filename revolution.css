@@ -1,0 +1,9 @@
+.orbit {
+  border-radius: 50%;
+}
+
+.planet {
+    border-radius: 50%;
+
+  position: absolute;
+}

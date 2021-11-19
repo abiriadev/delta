@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      background-color: white;
+    }
+    
+    .diublespinner {
+      
+    }
+
+    @keyframes turn {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes turnl {
+      from {
+        transform: rotate(180deg);
+      }
+
+      to {
+        transform: rotate(540deg);
+      }
+    }
+
+    .spinner {
+      width: 200px;
+      height: 200px;
+      color: deepskyblue;
+      display: flex;
+      font-size: 5em;
+      justify-content: center;
+      align-items: center;
+position: absolute;
+opacity: .9;
+
+      border-radius: 50%;
+      background-image:
+        radial-gradient(circle closest-side,
+          white 70%,
+          transparent 0),
+        conic-gradient(darkblue,
+          currentColor 100%,
+          transparent 0);
+
+      animation: 2s infinite linear;
+    }
+    
+    .spinner:first-child{
+            animation-name: turn;
+
+    }
+    
+    .spinner:last-child{
+                  animation-name: turnl;
+
+    }
+
+    .spinner>.cap {
+      width: 15%;
+      height: 15%;
+      background-color: currentColor;
+      margin: 0 auto;
+      position: absolute;
+
+      border-radius: 50%;
+    }
+
+    .spinner:first-child>.cap {
+      top: 0;
+    }
+
+    .spinner:last-child>.cap {
+      top: 0;
+      bottom: 0;
+      
+      /* animation: turnl 2s infinite linear; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="doublespinner">
+  <div class="spinner orbit">
+    <div class="cap planet"></div>
+  </div>
+  <div class="spinner orbit">
+    <div class="cap planet"></div>
+  </div>
+  </div>
+</body>
+
+</html>

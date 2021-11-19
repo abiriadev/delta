@@ -1,0 +1,14 @@
+{
+  "name": "tsconfigTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setRoot": "root=$(pwd); echo $root",
+    "clear": "rm -r dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

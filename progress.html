@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="./../init.css" />
+    
+    <style type="text/css" media="all">
+      body {
+        flex-direction: column;
+      
+        perspective: 400px;
+      }
+      
+      progress {
+        width: 300px;
+        height: 100px;
+      
+        /* border-radius: 20px; */
+        
+        color: red;
+        /* background-color: red; */
+      opacity: 1;
+        transform: rotateZ(-90deg) rotateX(45deg);
+      }
+    </style>
+    
+    <script type="text/javascript" charset="utf-8">
+      window.onload = () => {
+        const progress = document.body.getElementsByTagName('progress')[0]
+        let i = 0
+        
+        setInterval(
+        () => {
+          progress.value = `${Number(progress.value) + 1}`
+        
+    
+          progress.style.opacity = (++i / 2000) + 0.5
+        }, 10
+        )
+      }
+    </script>
+</head>
+
+<body>
+<progress value="17" max="1000"></progress>
+
+</body>
+
+</html>

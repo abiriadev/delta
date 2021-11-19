@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="./../init.css" />
+    
+    <style type="text/css" media="all">
+      body {
+        perspective: 300px;
+      }
+      
+      @keyframes rotate {
+        to {
+          transform: rotateZ(1turn);
+        }
+      }
+      
+      .conic {
+        background-image: 
+        repeating-conic-gradient(
+        orange 0 10%,
+        /*green*/ transparent 0 20%
+        
+        );
+        
+        background-color: transparent;
+      
+        border-radius: 50%;
+      transform: rotateX(-20deg);
+      }
+      
+      .cont {
+                animation: rotate 1s infinite linear;
+
+      }
+    </style>
+</head>
+
+<body>
+  <div class="cont">
+<div class="conic x200"></div>
+ </div>
+</body>
+
+</html>

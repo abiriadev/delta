@@ -1,0 +1,17 @@
+{
+  "name": "globy",
+  "version": "1.0.0",
+  "description": "globy can global install the local modules to any dependency",
+  "main": "globy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "global"
+  ],
+  "author": "Abiria",
+  "license": "ISC",
+  "bin": {
+    "globy": "bin.js"
+  }
+}

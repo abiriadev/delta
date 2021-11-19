@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audio</title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script type="text/javascript" charset="utf-8">
+    const getDataURL = blob => new Promise(
+      (resolve, reject) => {
+        try {
+          const fr = new FileReader()
+          fr.onload = ev => {
+            resolve(fr.result)
+          }
+          fr.readAsDataURL(blob)
+        } catch (err) {
+          reject(err)
+        }
+      }
+    )
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      try {
+        /*
+                const audio = new Audio('./resources/audios/DAOKO × 米津玄師『打上花火』MUSIC VIDEO.mp3')
+                //audio.autoplay = true
+
+                audio.onplay = ev => console.log(ev)
+                //audio.volume = 1
+                audio
+                  .play()
+                  .then(console.log)
+                  .catch(err => alert(err))
+
+        */
+        const audio = document.createElement('audio')
+
+        audio.src = './resources/audios/DAOKO × 米津玄師『打上花火』MUSIC VIDEO.mp3'
+        audio.preload = true
+        audio.setAttribute('autoplay', 'autoplay')
+        audio.controls = true
+        document.body.appendChild(audio)
+        audio.autoplay = true
+
+        const audioFileInput = document.querySelector('input[type="file"]')
+        audioFileInput.oninput = ev => {
+          getDataURL(ev.target.files[0])
+            .then(data => audio.src = data)
+            .then(alert)
+        }
+
+
+      } catch (err) {
+        alert(err)
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <p>Audio</p>
+  <input type="file" name="audio" id="audio" accept="audio/*" />
+</body>
+
+</html>

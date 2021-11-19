@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    :root>body {
+      border: 2px solid red;
+      color: white;
+    }
+
+    .box~input[type="checkbox"][id] {
+      clip: rect(0, 0, 0, 0);
+      position: absolute;
+    }
+
+    .box~input[type="checkbox"][id]+label[for] {
+      position: absolute;
+      bottom: 30px;
+
+      width: auto;
+      height: 49px;
+
+      border-radius: 10px;
+
+      padding: 0px 15px;
+
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 49px;
+    }
+
+    .box~input[type="checkbox"]#align~label[for="align"] {
+      right: 0px;
+
+      background: yellowgreen;
+    }
+
+    .box~input[type="checkbox"]#margin~label[for="margin"] {
+      left: 0px;
+      background-color: deeppink;
+    }
+
+    .box~input[type="checkbox"]#align:checked~label[for="align"] {
+      background: red;
+    }
+
+    .box~input[type="checkbox"]#align:checked~label[for="align"]::after {
+      content: '선택됨';
+    }
+
+    .box~input[type="checkbox"]#margin:checked~label[for="margin"] {
+
+      background-color: red;
+    }
+
+    .box~input[type="checkbox"]#margin:checked~label[for="margin"]::after {
+      content: '선택됨!'
+    }
+
+    .box {
+      display: flex;
+
+      width: 350px;
+      height: 350px;
+
+      border: 6px solid #11d698;
+    }
+
+    .box .inbox {
+      width: 100px;
+      height: 100px;
+
+      align-self: center;
+
+      margin-left: auto;
+      /* margin-right: auto; */
+
+      border: inherit;
+      border-color: #d6234f;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const box = document.querySelector('.box')
+      const inbox = document.querySelector('.inbox')
+
+      const marginCheckbox = document.querySelector('#margin')
+      const alignCheckbox = document.querySelector('#align')
+
+      let
+        mi = true,
+        ai = true
+
+      marginCheckbox.onchange = ev => {
+        with(inbox.style)[marginLeft, marginRight] = (mi = !mi) ? ['auto', 0] : [0, 'auto']
+      }
+
+      alignCheckbox.onchange = ev => {
+        with(inbox.style)
+        alignSelf = (ai = !ai) ? 'flex-start' : 'flex-end'
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="box">
+    <div class="inbox"></div>
+  </div>
+  <input type="checkbox" name="" id="margin" />
+  <label for="margin">margin</label>
+  <input type="checkbox" name="" id="align" />
+  <label for="align">align</label>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+doctype html
+html(lang='en')
+  head
+    title= name
+  body
+    h1 lorem ipsum
+    - const nameVar = "Abiria"
+    .name= nameVar + '><'
+    ul.list
+      - for (let i = 0; i < 5; ++i) {
+        p #{para} #{i}
+      - }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    .tiles {
+      width: 1000px;
+      height: 300px;
+
+      border: 5px solid yellowgreen;
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      
+      flex-basis: auto;
+      flex-shrink: 1;
+      flex-grow: 1;
+      
+    }
+
+    .tile {
+      width: 100px;
+      height: 100px;
+
+      border: 5px solid red;
+
+      /* transform: skew(-30deg); */
+    }
+
+    .tile:nth-child(even) {
+      border-color: green;
+      /* transform: skew(30deg); */
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tiles">
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+
+  </div>
+</body>
+
+</html>

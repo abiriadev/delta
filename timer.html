@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  
+  <style type="text/css" media="all">
+    body {
+      background-color: white;
+      color: black;
+    }
+
+    .timer {
+      width: 300px;
+      height: 300px;
+      color: deepskyblue;
+      display: flex;
+      font-size: 5em;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 50%;
+      background-image:
+        radial-gradient(circle closest-side,
+          white 95%, transparent 0),
+        conic-gradient(skyblue,
+          currentColor 100%,
+          transparent 0);
+    }
+  </style>
+  
+  <script>
+    load(()=>{
+      const timer = cls('timer')
+    
+  
+    const turn = ()=>{
+      
+    
+    let time = 12
+    let percentage = 0
+      const key =setInterval(()=>{
+        percentage += 0.5
+        log(percentage)
+        timer.style.background  =`radial-gradient(circle closest-side, white 95%, transparent 0), conic-gradient(skyblue, deepskyblue ${percentage}%, transparent 0)`
+      
+   // timer.style.borderRadius = `${percentage}px`
+        if(percentage >= 100) clearInterval(key)
+      }, 10)}
+      
+      doc.body.onclick=turn
+    })
+  </script>
+</head>
+
+<body>
+  <time datetime="12:45 PM" class="timer">12:45</time>
+  <!-- <input type="time" name="" id="" value="" /> -->
+</body>
+
+</html>

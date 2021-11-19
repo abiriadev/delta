@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    body {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .textbox {
+      width: 90%;
+      font-size: 1.2em;
+      line-height: 2;
+      background-color: dimgray;
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      margin: 160px 0;
+      background-clip: content-box;
+               background-image: linear-gradient(rgba(200, 150, 220, .6) 50%, rgba(108, 110, 190, .7) 0 );
+            background-size: 100% 4em;
+
+    }
+
+    .line-counter {
+      background-color: hsla(300, 70%, 80%, .3);
+    }
+
+    p {
+    }
+
+    .finder {
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      display: grid;
+      color: silver;
+      background-color: rgba(88, 88, 88, 1);
+      z-index: 2;
+      opacity: 1;
+
+      grid-template-columns: 1fr 100px;
+      grid-template-rows: 1fr;
+
+    }
+
+    .finder input[type="search"] {
+      font-size: 1em;
+      /* text-indent: 20px; */
+      background-color: transparent;
+      border: transparent 0;
+      padding: 0;
+    }
+
+    .finder input[type="button"] {
+      height: 100%;
+      background-color: green;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const markingWrap = p => word => {
+      p.innerHTML = p.innerText.replace(RegExp(word, 'ig'), `<mark>$&</mark>`)
+
+      return p.children
+    }
+    window.onload = () => {
+const lineC = document.getElementsByClassName('line-counter')[0]
+
+for(let i = 0; i < 69; i++)
+{
+  lineC.innerHTML += `${i}<br>`
+}
+
+
+
+
+      const input = document.querySelector('input[type="search"]')
+      const go = document.querySelector('input[type="button"]')
+
+      const p = document.body.getElementsByTagName('p')[0]
+      const marker = markingWrap(p)
+      let marks = []
+      let clickcount = 0
+
+      input.oninput = ev => {
+        marks = marker(
+          ev.target.value
+        )
+        //console.log(ev.target.value)
+      }
+
+      go.onclick = ev => {
+
+        console.log(marks)
+        if (marks[clickcount]) {
+          const rect = marks[clickcount].getBoundingClientRect()
+
+
+          window.scrollTo(rect.left, rect.top)
+          console.log(rect)
+
+          clickcount++;
+        }
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <div class="finder">
+    <input type="search" name="find" id="" value="" placeholder="find what?" autofocus />
+    <input type="button" name="submit" id="" value="find" />
+  </div>
+  <div class="textbox">
+    <div class="line-counter"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus voluptatem ut, dicta quo quis, obcaecati assumenda aliquid atque, labore architecto libero. Ut, consectetur ratione quo aspernatur, tenetur ea neque earum. Doloribus mollitia tempore, recusandae beatae eos quis perspiciatis omnis nam illo corporis qui aut esse aspernatur! Distinctio dolore ullam nisi ipsam, quae odio, soluta et accusamus perferendis inventore, sequi consequuntur labore quis! Dolores alias id veniam ab, placeat amet enim iusto provident iure ea minus cumque blanditiis officia eos, sapiente molestias incidunt nihil iste doloribus tenetur, commodi accusamus? Quis optio eum doloribus dolores. Neque ea dignissimos accusantium ipsa consequatur, dicta aperiam quibusdam rem, voluptas veniam dolor nemo sequi reprehenderit assumenda sit numquam sint molestias tenetur dolores ad aspernatur repellendus necessitatibus. Atque consectetur, saepe. Placeat nostrum, deserunt fuga sapiente dolor error eaque laborum culpa. Ipsum nam porro repellat error earum similique atque asperiores, ad magnam. Saepe soluta vel sapiente unde consequatur ab consequuntur omnis, officiis nostrum ad numquam similique consectetur odio nisi eum magnam quos enim aliquam? Quaerat iste omnis, eos facilis natus delectus, adipisci tempore eligendi ab praesentium sequi pariatur optio et? Quia modi obcaecati pariatur est? Id, aperiam. Eligendi obcaecati, fugiat dolore quos dolorem rem, ea incidunt, dolorum laudantium quia modi illum distinctio? Rem voluptates magnam delectus cum ea et totam beatae maxime expedita cumque quaerat adipisci incidunt illo debitis molestias, iure aliquid, laborum illum ex, quis dolor eos! Iusto atque sed accusamus, consectetur officiis optio repudiandae cumque illum dignissimos veritatis mollitia repellat, laudantium accusantium asperiores sit. Saepe possimus architecto necessitatibus nemo autem eaque, itaque magnam sint excepturi nostrum accusamus harum eum fugiat dicta, ex, id. Recusandae voluptates, et. Optio eius, earum eaque eveniet repellat numquam ratione id odit iusto. Mollitia vitae, deleniti unde suscipit qui quibusdam vel modi dolor totam repellendus quos in quaerat laboriosam perferendis nam magni.</p>
+  </div>
+</body>
+
+</html>

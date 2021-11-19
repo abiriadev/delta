@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="./widgets/slider.css" type="text/css" media="all" />
+
+<script src="lib.js" type="text/javascript" charset="utf-8"></script>
+<script src="./widgets/slider.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css" media="all">
+  .border {
+  }
+</style>
+<script type="text/javascript" charset="utf-8">
+  load(()=>{
+    setSlider('.border', 'border-radius', {
+     customValueTemplate: 
+     '50% / ${value}%',
+     min:0,
+     max:100,
+     value: 50,
+     unit: '%'
+    })
+  })
+</script>
+
+</head>
+
+<body>
+<div class="border x200x150"></div>
+</body>
+
+</html>

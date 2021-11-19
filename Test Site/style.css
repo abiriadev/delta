@@ -1,0 +1,36 @@
+svg {
+  width: 300px;
+  height: 300px; }
+  svg:hover {
+    stroke: red;
+    stroke-width: 4; }
+    svg:hover > path {
+      stroke: red;
+      stroke-width: 4; }
+
+.asd {
+  width: 300px;
+  height: 300px;
+  transition: 2s;
+  stroke: red;
+  stroke-width: 4;
+  fill: green; }
+  .asd:hover {
+    stroke: red;
+    stroke-width: 4;
+    fill: gold; }
+
+#a12 {
+  stroke: red;
+  stroke-width: 4;
+  fill: green; }
+
+body {
+  width: 200px;
+  background-color: green;
+  color: green; }
+
+h1 {
+  background-color: red; }
+
+/*# sourceMappingURL=style.css.map */

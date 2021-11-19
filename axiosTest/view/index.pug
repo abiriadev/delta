@@ -1,0 +1,39 @@
+doctype html
+html(
+  lang = 'en'
+)
+  head
+    title title
+    
+    meta(
+      charset="UTF-8"
+    )
+    meta(
+      name="viewport",
+      content="width=device-width, initial-scale=1",
+    )
+    
+    - const stylerouter = '/styles/'
+    link(
+      rel='stylesheet',
+      href= stylerouter+'style.css',
+      type='text/css',
+      media='all',
+    )
+  body
+    main.main
+      h1 [my images]
+      ul.images
+        each imgSrc, index in imgList
+          li.image
+            article.article
+              h2 lorem - #{index}
+              img.img(
+                src=imgSrc
+                alt=imgSrc
+              )
+              p.description!= 'name:' + '<br>' + imgSrc
+      footer.footer
+        - const length = imgList.length
+        p total #{length} images
+      

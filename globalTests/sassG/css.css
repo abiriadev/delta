@@ -1,0 +1,11 @@
+p.para {
+  color: #123456;
+}
+p.para span {
+  border-width: 10px;
+}
+p.para:hover {
+  width: 200px;
+}
+
+/*# sourceMappingURL=css.css.map */

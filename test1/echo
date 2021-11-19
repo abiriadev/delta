@@ -1,0 +1,5 @@
+1	alias ls='ls --color=auto'
+2	export NODE_PATH=/data/user/0/io.tempage.dorynode/files/lib/node_modules/
+3	export TMPDIR=/data/user/0/io.tempage.dorynode/cache
+4	cd ../../../../../sdcard/Android/data/io.spck/files/delta
+5	alias mc='mkdir test1 > /dev/null 2> /dev/null; cd test1'

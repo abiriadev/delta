@@ -1,0 +1,19 @@
+.cards, main {
+  list-style: none;
+
+  border: 2px solid silver;
+
+  width: 350px;
+  height: 200px;
+}
+
+.card {
+  box-sizing: border-box;
+  background-color: pink;
+
+  border: inherit;
+  border-color: hotpink;
+
+  padding: 10px;
+  border-radius: 3px;
+}

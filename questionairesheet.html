@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    @keyframes spredborder {
+      from {
+        border-bottom: 5px solid red;
+        width: 0;
+      }
+
+      to {
+        width: 80%;
+        border-bottom: 5px solid red;
+      }
+    }
+
+    body {
+      transition: 1s;
+
+      overflow: scroll;
+      height: auto;
+    }
+
+    .cont {
+      display: flex;
+
+      flex-direction: column;
+
+      border: 5px solid red;
+
+      width: 100%;
+
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .ques {
+      margin: 0 auto;
+      border: 7px solid green;
+      height: 400px;
+
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+
+      top: 20%;
+      border: none;
+
+      font-size: 1.3em;
+      text-indent: 10px;
+      padding: 20px 10px;
+
+      margin: 0 auto;
+
+      background-color: gray;
+      color: white;
+      font-weight: 500;
+
+    }
+
+    input {}
+
+    input:focus {
+      box-shadow: 0 0 20px 5px green;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const inputs = document.querySelectorAll('input')
+
+      inputs.forEach((input, i) => {
+
+        input.onchange = ev => {
+
+          document
+            .body
+            .style
+            .transform =
+                        `translateY(${-window.pageYOffset-400}px)`
+
+
+
+          inputs[i + 1].style.animation = "spredborder .8s"
+          //inputs[i + 1].focus()
+
+          console.log(
+            `${inputs[i + 1].parentNode.childNodes[0].nodeValue}(${-inputs[i + 1].getBoundingClientRect().top + window.pageYOffset}px)`
+
+          )
+          
+          console.log(window.pageYOffset)
+
+        }
+
+
+      })
+
+    }
+  </script>
+</head>
+
+<body>
+  <div class="cont">
+    <div class="ques">
+      1<input type="text">
+    </div>
+    <div class="ques">
+      2<input type="text">
+    </div>
+    <div class="ques">
+      3<input type="text">
+    </div>
+    <div class="ques">
+      4<input type="text">
+    </div>
+    <div class="ques">
+      5<input type="text">
+    </div>
+    <div class="ques">
+      6<input type="text">
+    </div>
+    <div class="ques">
+      7<input type="text">
+    </div>
+  </div>
+</body>
+
+</html>

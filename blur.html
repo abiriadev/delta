@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css" media="all">
+    * {
+      padding: 0;
+      margin: 0;
+      background-clip: border-box;
+      background-repeat: no-repeat;
+
+
+    }
+
+    body {
+      /* background: #000; */
+
+      width: 100vm;
+      height: 100vh;
+
+    }
+
+    .blur {
+      width: 100%;
+      /* background: url("./milky-way-984050.jpg"); */
+      background-image: url("Screenshot_20201227-090824.jpg");
+      border: 1px solid red;
+      height: 100%;
+      margin: 0 auto;
+      /* filter: sepia() saturate(4) hue-rotate(0deg); */
+      /* filter: blur(15px); */
+      background-size: 100%;
+    }
+
+    .img {
+      height: 100%;
+      width: 50%;
+      margin: 0 auto;
+      /* overflow: hidden; */
+      border: 3px solid green;
+      
+      /* display: ; */
+      /* background: url("./milky-way-984050.jpg"); */
+    }
+
+    .in-img {
+      background-repeat: repeat-y;
+      border: 3px solid yellow;
+      width: 600%;
+      height: 100%;
+      background: url("./milky-way-984050.jpg");
+      background-size: auto 100%;
+      margin: 0 -150%;
+    }
+  </style>
+  <!-- <script type="text/javascript" charset="utf-8">
+    let i = 0
+    
+    setInterval(
+      
+      () => {
+        
+        i+=1;
+        document.getElementById('img').style.filter = `blur(${i%20}px)`
+      }, 100
+      )
+  </script> -->
+</head>
+
+<body>
+  <!-- <img src="./milky-way-984050.jpg" alt="" /> -->
+  <div class="blur">
+    <div class="img">
+      <div class="in-img">dsbshhe</div>
+    </div>
+  </div>
+  <!-- <img id="" src="./Screenshot_20201227-090824.jpg" alt="" /> -->
+</body>
+
+</html>

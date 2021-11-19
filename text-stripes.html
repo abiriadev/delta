@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <style type="text/css" media="all">
+    p.stripes {
+      background-image:
+        repeating-linear-gradient(to right,
+          blue 0 16.66%,
+          red 0 33.33%,
+          yellow 0 50%,
+          blue 0 66.66%,
+          green 0 83.33%,
+          red 0 100%
+        );
+
+      font-family: monospace;
+      /* background-size: 2ch; */
+      /* background-size: 1ch; */
+
+      font-size: 6em;
+      font-weight: 600;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    p::first-letter {
+      text-transform: capitalize;
+    }
+  </style>
+</head>
+
+<body>
+  <p class="stripes">google</p>
+</body>
+
+</html>

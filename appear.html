@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      background-color: white;
+    }
+
+    @keyframes show {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes hide {
+      to {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    .dialog {
+      width: 16.2rem;
+      height: 4.7em;
+      background-color: white;
+      color: black;
+      border-radius: 1.2em;
+      box-shadow: 0 3px 70px rgba(100, 100, 100, .5);
+
+      line-height: 1.2;
+      font-size: 1.5em;
+      padding: 4% 7%;
+      font-weight: 500;
+position: absolute;
+
+display: none;
+    }
+
+    .dialog span {
+      position: absolute;
+      right: 7%;
+      top: 4%;
+      font-size: 1.4em;
+
+      color: deeppink;
+    }
+    
+    .check {
+      font-size: 4em;
+     font-weight: 900;
+      color: deeppink;
+    background-color: rgba(200, 200, 200, .4);
+      padding: 10px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    
+    .check::before{
+      content: '\2713'
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      //const didia = document.querySelector('dialog')
+      //didia.showModal()
+
+      const dialog = cls('dialog')
+
+      const closeButton = dialog.getElementsByTagName('span')[0]
+      closeButton.onclick = ev => {
+        dialog.style.animation = ".5s hidden"
+      }
+
+    })
+  </script>
+</head>
+
+<body>
+  <div class="check">snnene</div>
+  <div class="dialog">
+    hello, world!
+    <span>×</span>
+  </div>
+</body>
+
+</html>

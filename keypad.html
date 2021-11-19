@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <link rel="stylesheet" href="./keyOrder.css" />
+  <style type="text/css" media="all">
+    div.wrap {
+      background-color: white;
+
+      color: white;
+
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+justify-content: start;
+align-items: start;
+   gap: 0;
+   justify-items: start;
+   align-content: start;
+    }
+
+    .head {
+      width: 100%;
+      height: 200px;
+      
+      grid-row: 1;
+      grid-column: 1;
+
+      background-color:
+        #40cbff
+        ;
+      border-top: 15px solid #2493db;
+
+border: 5px solid blue;
+      display: grid;
+
+      grid-template-columns: 1fr 5fr 1fr;
+      grid-template-rows: 1fr 1.7fr .9fr;
+
+      color: white;
+    }
+
+    .head input {
+      grid-column: 2/ 5;
+      grid-row: 2 / 3;
+      border: 0;
+      background-color: transparent;
+      font-size: 2.7em;
+
+      color: white;
+    }
+
+    input:focus,
+    button {
+      outline: 0;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 0;
+      width: 100%;
+      margin: 0;
+      border: 3px solid red;
+      background-color:         #40cbff
+;
+   
+   
+   grid-row: 2 / 3;
+   grid-column: 1 / 2;
+   
+    }
+
+    .keypad>.key {
+      border: .1px solid gray;
+
+      font-size: 2.2em;
+      justify-content: center;
+      align-items: center;
+      color: rgb(40, 40, 40);
+      text-align: center;
+      font-weight: 300;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .key>div {
+      font-size: .4em;
+      color: #40cbff;
+    }
+
+    .call {
+      width: 70%;
+
+      margin: 0 auto;
+
+      background-color: #40cbff;
+
+      border-radius: 50%;
+color: inherit;
+font-size: 2.3em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="head"><input type="number" name="calc" id="calc" value="81152" /></div>
+    <div class="keypad">
+      <div class="key">1<div>abc</div>
+      </div>
+      <div class="key">2<div>def</div>
+      </div>
+      <div class="key">3<div>qks</div>
+      </div>
+      <div class="key">4<div>soe</div>
+      </div>
+      <div class="key">5<div>sbd</div>
+      </div>
+      <div class="key">6<div>avn</div>
+      </div>
+      <div class="key">7<div>abn</div>
+      </div>
+      <div class="key">8<div>lkn</div>
+      </div>
+      <div class="key">9<div>bku</div>
+      </div>
+    </div>
+    <button class="call">call</button>
+  </div>
+</body>
+
+</html>

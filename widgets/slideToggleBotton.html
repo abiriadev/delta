@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>slide</title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    body {
+      background-color: white;
+    }
+
+    * {
+      color: white;
+    }
+
+    input[type="checkbox"][id].slideToggleBotton {
+      clip: rect(0, 0, 0, 0);
+      position: absolute;
+    }
+
+    input[type="checkbox"][id].slideToggleBotton+label[for] {
+      width: 150px;
+      /* PTNCWE */
+      height: 1.66em;
+
+      font-size: 42px;
+      /* PTNCWE */
+      text-align: center;
+      line-height: 1.66em;
+      font-weight: 600;
+
+      border-radius: .83em;
+      /* background-color: green; */
+      background-color: silver;
+      color: white;
+
+      box-shadow: 0 5px 26px -5px rgba(30, 30, 30, .5) inset;
+
+      display: flex;
+      /* grid-template-columns: 1fr 70px; */
+      /* grid-template-rows: 1fr; */
+
+      transition-duration: .3s;
+    }
+
+    input[type="checkbox"][id].slideToggleBotton+label[for]::before {
+      box-sizing: border-box;
+      width: 1.66em;
+      height: 100%;
+
+      /* background-color: hsla(0, 0%, 100%, .6); */
+      background-color: white;
+
+      border: .16em solid;
+      /*curruntColor*/
+      border-radius: 50%;
+
+      /* color: gray; */
+      color: silver;
+
+      /* position: absolute; */
+      content: '';
+      left: 0px;
+      top: 0px;
+      /* bottom: 0; */
+      /* right: 0; */
+
+      box-shadow: 0 0 14px 0 rgba(30, 30, 30, .2);
+
+      transform-origin: center center;
+      transition: .3s ease;
+
+      /*1도 나름 귀엽다*/
+      /* transform: scale(1); */
+
+      /*초기 설정*/
+      /* transform: scale(1.2); */
+
+      /*height / (height - 2border)*/
+      transform: scale(1.25);
+    }
+
+    input[type="checkbox"][id].slideToggleBotton:checked+label[for] {
+      background-color: #4fb7bf;
+    }
+
+    input[type="checkbox"][id].slideToggleBotton:checked+label[for]::before {
+      border-color: #4fb7bf;
+
+      /* transform: scale(1.2) translateX(130px); */
+      /* w - h = 4.76−1.66 = */
+      transform: translateX(calc(150px - 1.66em)) scale(1.25);
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      let i = true
+      document.querySelectorAll('input[type="checkbox"][id].slideToggleBotton').forEach(toggleSwitch => toggleSwitch.onchange = ev => { with (document.body.style) [backgroundColor, color] = (i = !i) ? ['white', 'black'] : ['black', 'white']})
+    }
+  </script>
+</head>
+
+<body>
+  <!--<div class="slideToggleBotton">
+    <div class="circleLever">
+  </div>-->
+  <input type="checkbox" name="switch" class="slideToggleBotton" id="switch" checked />
+  <label for="switch"></label>
+  <!--<script type="text/javascript" charset="utf-8">
+    let i = true
+    const slider = document.querySelector('.slideToggleBotton')
+    document.querySelector('botton').onclick = ev => {
+      i = !i
+      with(slider.style) {
+        //gridTemplateAreas = i ? '"a b"' : '"b a"'
+        paddingLeft = i ? `0` : `70px`
+        backgroundColor = i ? 'red' : 'green'
+      }
+    }
+  </script>-->
+</body>
+
+</html>

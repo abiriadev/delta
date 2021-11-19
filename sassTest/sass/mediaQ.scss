@@ -1,0 +1,53 @@
+@import "./namesapcs.scss";
+
+$width-small: 400px;
+$width-medium: 760px;
+$width-large: 1200px;
+
+@mixin responsive($width) {
+  @if $width == wide-screens {
+    @media only screen and (
+      max-width: $width-large
+    ) {
+      @content;
+    }
+  }
+  @else if $width == medium-screen {
+    @media only screen and (
+      max-width: $width-medium
+    ) {
+      @content;
+    }
+  }
+  @else if $width == small-screen {
+    @media only screen and (
+      max-width: $width-small
+    ) {
+      @content;
+    }
+  }
+}
+
+
+
+$wid: 700px;
+
+$mediaQ: "screen and (max-width:#{$wid})";
+
+section.main {
+  float: left;
+
+  width: 28px;
+
+  @media #{$mediaQ} {
+    float: none;
+    width: auto;
+
+  }
+  
+  @include responsive(wide-screens) {
+    float: none;
+    width: 100%;
+    font-size: 12px;
+  }
+}

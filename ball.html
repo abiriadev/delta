@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" type="text/css" media="all" />
+  <script src="./../delta/print.js" type="text/javascript" charset="utf-8"></script>
+  <!-- <script src="./lib.js" type="text/javascript" charset="utf-8"></script> -->
+  <style type="text/css" media="all">
+    body {}
+
+    .ball {
+      border-radius: 0%;
+
+      position: absolute;
+      border: 5px solid red;
+    }
+
+    .ball:first-child {
+      background-color: yellowgreen;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    const log = console.log
+
+    const getViewportWidth = () => document.documentElement.clientWidth
+    const getViewportHeight = () => document.documentElement.clientHeight
+
+    window.onload = () => {
+
+      const ball = document.body.querySelectorAll('.ball')[0];
+      const ball2 = document.querySelectorAll('.ball')[1]
+      let i = 0
+
+      function* move(ele, x, other) {
+        let left = 0
+        let top = 0
+        let deltaX = x
+        let deltaY = 2
+        while (1) {
+          ele.style.left = `${left +=deltaX}px`
+          ele.style.top = `${top+=deltaY}px`
+          yield 1
+          i++
+          if (getViewportWidth() - 50 <= left || left <= 0) deltaX *= -1
+          if (getViewportHeight() - 50 <= top || top <= 0) deltaY *= -1
+
+          const rect = other.getBoundingClientRect()
+          //log(left+','+top)
+
+          const stop = () => {
+            const limit = 10
+            let time = limit
+            return call => {
+              if (!(time % limit)) {
+                call()
+              }
+              time += 1
+log(time)
+            }
+          }
+
+          const ll = left + 50 >= rect.left && left <= rect.right
+          const tt = top + 50 >= rect.top && top <= rect.bottom
+
+          // 옆으로 접하나
+          if (ll) {
+            if (top + 50 >= rect.top) {
+              if (deltaY > 0) {
+                stop()(() => {
+                  deltaY *= -1
+                  log(i)
+                })
+              }
+            } else if (top <= rect.bottom) {
+              if (deltaY < 0) {
+                stop()(() => {
+                  deltaY *= -1
+                })
+              }
+            }
+          } else if (0) {
+            if (left + 50 >= rect.left) {
+              if (deltaX > 0) {
+                deltaX *= -1
+              }
+            } else if (left <= rect.right) {
+              if (deltaX < 0) {
+                deltaX *= -1
+              }
+            }
+          }
+
+        }
+      }
+      const moveball = move(ball, 2, ball2)
+      const moveball2 = move(ball2, 3, ball)
+
+      setInterval(() => {
+        moveball.next()
+        //moveball2.next()
+      }, 10)
+    }
+  </script>
+</head>
+
+<body>
+  <div class="ball x50"></div>
+  <div class="ball x50"></div>
+</body>
+
+</html>

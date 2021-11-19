@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    body {
+      justify-content: flex-start;
+      flex-direction: column;
+
+      overflow: visible;
+      height: auto;
+    }
+
+    h2 {
+      margin: 50px 0 30px 0;
+    }
+
+    h1 {
+      margin: 20px 0;
+    }
+
+    p {
+      max-width: 70%;
+
+      text-align: center;
+    }
+
+    .logo {
+
+      position: sticky;
+      top: 20px;
+    }
+    
+    body > div {
+      position: relative;
+      
+      
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const logo = document.querySelector('.logo')
+
+      window.onscroll = ev => {
+        //console.log(JSON.stringify(ev))
+
+        if (window.pageYOffset > 200) {}
+        else if (100 > window.pageYOffset && window.pageYOffset < 200) {
+          //console.log("#&!")
+
+          logo.style.transform = `scale(${-window.pageYOffset / 200 + 1})`
+          logo.style.backgroundColor = 'red'
+        } else if (window.pageYOffset < 100) {
+          logo.style.transform = `scale(1)`
+          logo.style.backgroundColor = 'orange'
+
+        }
+
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h2>abiria</h2>
+  <div class="x200">
+  <div class="logo x100"></div>
+  </div>
+  <h1>Delta</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, veniam, optio? Accusamus dolor, quis assumenda consectetur cumque, labore repudiandae eveniet nihil expedita! Accusamus laboriosam delectus et saepe consequatur, dolores nostrum possimus, dolorem omnis in modi debitis. Minima nihil pariatur, ex iure et explicabo, atque, excepturi asperiores fugiat velit magnam distinctio repellat, nobis similique. Voluptatem repellat provident nisi amet odio voluptas repudiandae, vitae quasi nulla magnam consequuntur rerum laboriosam voluptatum fugiat expedita enim necessitatibus deserunt ipsum minima eius aperiam sunt esse aliquid accusamus. Sint soluta quibusdam quae, quos, dolore rerum nostrum voluptates id quia sunt aut enim quod maiores iste labore?</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, veniam, optio? Accusamus dolor, quis assumenda consectetur cumque, labore repudiandae eveniet nihil expedita! Accusamus laboriosam delectus et saepe consequatur, dolores nostrum possimus, dolorem omnis in modi debitis. Minima nihil pariatur, ex iure et explicabo, atque, excepturi asperiores fugiat velit magnam distinctio repellat, nobis similique. Voluptatem repellat provident nisi amet odio voluptas repudiandae, vitae quasi nulla magnam consequuntur rerum laboriosam voluptatum fugiat expedita enim necessitatibus deserunt ipsum minima eius aperiam sunt esse aliquid accusamus. Sint soluta quibusdam quae, quos, dolore rerum nostrum voluptates id quia sunt aut enim quod maiores iste labore?</p>
+</body>
+
+</html>

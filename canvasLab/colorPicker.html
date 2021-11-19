@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color picker</title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="canvas.css" type="text/css" media="all" />
+  <script src="canvas.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    div.frame {
+      width: 90%;
+      height: 70%;
+      /* border: 2px solid red; */
+
+      overflow: scroll;
+    }
+
+    .output {
+      margin-top: 1em;
+      font-size: 1.5em;
+      display: flex;
+    }
+
+    .color {
+      width: 1.2em;
+      height: 1.2em;
+      background-color: rgba(0, 0, 0, 255);
+      border-radius: 20%;
+    }
+
+    output {
+      margin-left: .4em;
+      color: initial;
+      flex: 1 1 1;
+      font: 500;
+      text-align: center;
+    }
+
+    output::before {
+      content: 'rgba(';
+    }
+
+    output::after {
+      content: ')';
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const canvas = document.getElementsByTagName('canvas')[0]
+      const ctx = canvas.getContext('2d')
+
+      adjustToViewport(canvas)
+      //canvas.height = 300
+      //canvas.width = 300
+
+
+      const rgbDisplay = document.getElementById('rgb')
+      const colorbox = document.getElementsByClassName('color')[0]
+
+      const img = new Image()
+
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+        imageData.getRGBA = function(m, n) {
+          return this.data.slice(
+            this.width * 4 * n + 4 * m,
+            this.width * 4 * n + 4 * m + 4
+          )
+        }
+
+        canvas.onclick = ev => {
+          const colorData = imageData.getRGBA(ev.offsetX, ev.offsetY)
+          rgbDisplay.innerHTML = colorData
+          colorbox.style.backgroundColor = `rgba(${colorData.join(',')})`
+        }
+      }
+
+      img.src = "./../resources/images/wallpaper.jpg"
+    }
+  </script>
+</head>
+
+<body>
+  <div class="frame">
+    <canvas>
+      <p>canvas not supported ㅠㅠ</p>
+    </canvas>
+  </div>
+  <div class="output">
+    <div class="color"></div>
+    <output id="rgb">0, 0, 0, 0</output>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+# this is comment
+link=/https?:\/\/(\w+)\./g
+disc=/<link>/

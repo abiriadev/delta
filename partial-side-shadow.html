@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  body {
+    background-color: initial;
+  
+  }
+  
+  .partial-side-shadow {
+  
+overflow: visible;
+overflow-y: hidden;
+  }
+  
+  .partial-side-shadow::before {
+       position: absolute;
+       content: '';
+       left: 0;
+       top: 0;
+       bottom: 0;
+       right: 0;
+        box-shadow: 20px 0 15px 0 rgba(90, 90,90, .4);
+
+  }
+</style>
+</head>
+
+<body>
+<div class="partial-side-shadow x200x150"></div>
+</body>
+
+</html>

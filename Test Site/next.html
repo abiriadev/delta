@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const output = document.getElementsByTagName('output')[0]
+      const submit = document.querySelector('input[type="button"]')
+
+      let i = 0
+      submit.onclick = ev => {
+        let xhr = new XMLHttpRequest()
+
+        xhr.onreadystatechange = ev => {
+          if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200 || xhr.status === 201) {
+              console.log(xhr.responseText)
+              const li = document.createElement('li')
+              li.innerHTML= JSON.parse(xhr.responseText).item
+
+              output.children[0].appendChild(li)
+
+            } else {
+              console.error(xhr.responseText)
+              output.innerText = "실패: " + xhr.responseText
+            }
+          }
+        }
+
+        i++
+        xhr.open('GET', `/next/${i}`)
+        //xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify({ i }))
+      }
+    }
+  </script>
+  
+  <style type="text/css" media="all">
+   ol {
+     display: flex;
+     
+     width: 100vw;
+     height: 100vh;
+     
+   }
+   
+   li {
+     
+     flex : 0 0 100vw;
+     
+     background-color: yellowgreen;
+   box-sizing: border-box;
+     border: 5px solid blue;
+   } 
+   
+   input {
+     position: fixed;
+     
+     right: 30px;
+     top: 10px;
+     
+     width: 40px;
+     height: 30px;
+   }
+  </style>
+  
+  <style type="text/css" media="all">
+        article {
+      border: 5px solid orange;
+
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      
+      grid-template-rows: repeat(6, 1fr);
+    
+      font-size: 1.5em;
+      text-align: center;
+      
+    }
+
+    header {
+      border: inherit;
+
+      border-color: blue;
+
+grid-column: 1/13;
+grid-row: 1;
+    }
+
+    aside {
+      border: inherit;
+
+      border-color: green;
+    
+      grid-column: 1/4;
+      grid-row: 2/6;
+    }
+
+    main {
+      border: inherit;
+
+      border-color: yellow;
+grid-column: 4/13;
+grid-row: 2/6;
+
+    }
+
+    footer {
+      border: inherit;
+
+      border-color: purple;
+    
+      grid-column: 1/13;
+      grid-row: 6;
+    }    article {
+      border: 5px solid orange;
+
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      
+      grid-template-rows: repeat(6, 1fr);
+    
+      font-size: 1.5em;
+      text-align: center;
+      
+    }
+
+    header {
+      border: inherit;
+
+      border-color: blue;
+
+grid-column: 1/13;
+grid-row: 1;
+    }
+
+    aside {
+      border: inherit;
+
+      border-color: green;
+    
+      grid-column: 1/4;
+      grid-row: 2/6;
+    }
+
+    main {
+      border: inherit;
+
+      border-color: yellow;
+grid-column: 4/13;
+grid-row: 2/6;
+
+    }
+
+    footer {
+      border: inherit;
+
+      border-color: purple;
+    
+      grid-column: 1/13;
+      grid-row: 6;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="/add" method="post" accept-charset="utf-8">
+    <input type="button" name="" id="" value="add" />
+    <output>
+      <ol>
+      </ol>
+    </output>
+  </form>
+</body>
+
+</html>
+
+

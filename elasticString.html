@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./touchLab/forTouch.css" type="text/css" media="all" />
+  <script src="./../jsTest/underscore.js/underscore.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./../jsTest/underscore.js/map.js" type="text/javascript" charset="utf-8"></script>
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <script src="revolution.js" type="text/javascript" charset="utf-8"></script>
+   <script src="./touchLab/length.js" type="text/javascript" charset="utf-8"></script>
+
+  <script src="./touchLab/angle.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./touchLab/generatePointer.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      overflow: hidden;
+    
+      background-color: black;
+    }
+    
+    .elasticString {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 100px;
+      height: 0;
+
+      box-sizing: content-box;
+      border: 1px solid aqua;
+      border-left: 0;
+      border-right: 0;
+      transform-origin: left center;
+      /* animation: turn 10s infinite; */
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      const line = cls('elasticString')
+      const rectMemo = line.getBoundingClientRect()
+
+      setTouchZone(document.body, true)
+
+      const ori = getDocumentPosition(rectMemo)
+
+      document.body.ontouchmove = ev => {
+
+        const xyasf = {
+          x: ev.touches[0].pageX,
+          y: ev.touches[0].pageY,
+        }
+
+        line.style.width = `${calcLength(ori, xyasf)}px`
+        
+        line.style.transform = `rotate(${calcAngleWithSin(ori,xyasf)-90}deg)`
+     
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div class="elasticString"></div>
+</body>
+
+</html>

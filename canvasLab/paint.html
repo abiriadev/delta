@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    body {
+      margin: 0;
+      padding: 0;
+
+      overflow: hidden;
+    }
+
+    canvas {}
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    load(() => {
+      const canvas = document.getElementsByTagName('canvas')[0]
+
+      canvas.width =
+        document.documentElement.clientWidth
+
+      canvas.height =
+        document.documentElement.clientHeight
+
+
+      const ctx = canvas.getContext('2d')
+
+      ctx.strokeStyle = 'red'
+      //ctx.fillStyle = "#44ff44"
+      //ctx.lineWidth = 10
+
+      ctx.beginPath()
+      ctx.moveTo(0, 0)
+      //ctx.strokeRect(0,0,100,200)
+
+
+      document.body.ontouchstart = ev => {
+        ctx.lineTo(
+          ev.touches[0].pageX,
+          ev.touches[0].pageY
+        )
+        ctx.stroke()
+      }
+      document.body.ontouchmove = ev => {
+        ctx.lineTo(
+          ev.touches[0].pageX,
+          ev.touches[0].pageY
+        )
+        ctx.stroke()
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <canvas width="300" height="500">
+  </canvas>
+</body>
+
+</html>

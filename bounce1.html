@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  @keyframes bounce {
+    60%, 80%, to {
+      transform: translateY(400px);
+    
+      animation-timing-function: ease;
+    }
+    70%{
+      transform: translateY(300px);
+    }
+    90%{
+      transform: translateY(360px);
+    }
+  }
+  
+  .ball {
+    border-radius: 50%;
+    
+    animation: 3s cubic-bezier(.1, .25,.1,.25) infinite;
+    animation-name: bounce;
+ 
+ margin-top: -300px;
+  }
+</style>
+</head>
+
+<body>
+<div class="ball x100"></div>
+</body>
+
+</html>

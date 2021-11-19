@@ -1,0 +1,46 @@
+blockquote {
+  bottom: 191919em;
+  background-image: url("var");
+}
+
+header[role=banner] h1 {
+  font-size: 54px;
+  font-family: Arial;
+  font-weight: 700;
+}
+header[role=banner] h1 blockquote {
+  color: red;
+}
+
+p, blockquote {
+  border-color: #779;
+  border-radius: 30%;
+  border-style: dashed;
+  border-width: 20px;
+  box-sizing: border-box;
+  background-color: #779;
+  box-sizing: padding-box;
+}
+p ul, blockquote ul {
+  text-empty-cells: 0;
+  boas-hel: 199px;
+}
+
+/*!shjbwvw*/
+section.main {
+  float: left;
+  width: 28px;
+}
+@media screen and (max-width:700px) {
+  section.main {
+    float: none;
+    width: auto;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  section.main {
+    float: none;
+    width: 100%;
+    font-size: 12px;
+  }
+}

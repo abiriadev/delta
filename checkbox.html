@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    @keyframes vibrate {
+      form {
+        transform: scale(1);
+        border-radius: .25em;
+      }
+
+      30% {
+        transform: scale(1.4);
+
+        border-radius: 40%;
+      }
+
+      to {
+        transform: scale(1);
+        border-radius: .25em;
+      }
+    }
+
+
+    @keyframes impact {
+      form {
+        transform: scale(1);
+
+      }
+
+      50% {
+        transform: scale(1.5);
+
+      }
+
+      to {
+        transform: scale(2.5);
+        background-color: transparent;
+      }
+    }
+
+    input[type=checkbox]:not(#h) {
+
+      width: 80px;
+      height: 80px;
+
+      margin-right: 20px;
+
+      clip: rect(0, 0, 0, 0);
+      position: absolute;
+
+    }
+
+    input[type=checkbox]:focus+label {
+      /* box-shadow: 0 0 20px 10px blue; */
+    }
+
+    input[type=checkbox]+label {
+      width: 80px;
+      height: 80px;
+
+      font-size: 56px;
+
+      /* text-align: center; */
+      /* line-height: 100px; */
+      /* font-weight: 600; */
+
+      border-radius: .25em;
+      display: inline-block;
+      background-color: silver;
+transition-property: background-color;
+      transition: .5s;
+
+    }
+
+    input[type=checkbox]+label::before {
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+
+      text-align: center;
+      line-height: 1.42em;
+      font-weight: 900;
+
+    }
+
+    input[type=checkbox]+label::after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      content: '';
+
+      /* transform: scale(2); */
+      border-radius: 50%;
+      background-color: hsla(0, 0%, 80%, .6);
+      
+      z-index: -1;
+    }
+
+    input[type=checkbox]:checked+label {
+      background-color: yellowgreen;
+
+      animation: vibrate .5s 1 ease;
+    }
+
+    input[type=checkbox]:checked+label::before {
+      content: '\2713';
+    }
+
+    input[type=checkbox]:checked+label::after {
+
+
+      animation: impact .7s ease 1;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" name="if" id="checkbox" />
+  <label for="checkbox"></label>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "coffeeTest.js",
+  "sourceRoot": "",
+  "sources": [
+    "coffeeTest.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;AAAA,MAAA,IAAA,EAAA;;EAAA,IAAA,GAAO,OAAA,CAAQ,MAAR;;EAEP,MAAA,GAAS,IAAI,CAAC,YAAL,CAAkB,QAAA,CAAC,GAAD,EAAM,GAAN,CAAA;IACvB,GAAG,CAAC,SAAJ,CAAc,GAAd,EACE;MAAA,cAAA,EAAgB;IAAhB,CADF;WAEA,GAAG,CAAC,GAAJ,CAAQ,aAAR,EAAuB,QAAA,CAAA,CAAA;aAAM,OAAO,CAAC,GAAR,CAAY,YAAZ;IAAN,CAAvB;EAHuB,CAAlB;;EAKT,MAAM,CAAC,MAAP,CAAc,KAAd,EAAqB,QAAA,CAAA,CAAA;WAAM,OAAO,CAAC,GAAR,CAAY,CAAA,qBAAA,CAAA,CAAwB,KAAxB,CAAA,CAAZ;EAAN,CAArB;AAPA",
+  "sourcesContent": [
+    "http = require 'http'\n\nserver = http.createServer (req, res) ->\n    res.writeHead 200,\n      'Content-Type': 'text/template'\n    res.end 'Hello world', () -> console.log 'requested!'\n\nserver.listen 61711, () -> console.log \"running at localhost:#{61711}\""
+  ]
+}

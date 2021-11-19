@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    body {
+      /*flex-wrap: wrap;*/
+    }
+
+    @keyframes bound {
+      form {
+        /* transform: translateY(300px); */
+      }
+
+      to {
+        transform: translateY(-300px);
+      }
+    }
+
+    .boll {
+      width: 100px;
+      height: 100px;
+
+      border-radius: 50%;
+
+      background-color: blue;
+      background-image: radial-gradient(circle farthest-side at 30% 30%, #f2b7cc 0%, #ef4233 30%, #c01520 60%, #601010 100%);
+
+      
+      transform: translateY(200px);
+      /* transition: 2s transform ease; */
+      animation-name: bound;
+      animation-duration: .5s;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-out;
+
+    }
+
+    .boll:nth-child(2) {
+      /*밝은 버전*/
+      /*background-image: radial-gradient(circle at 30% 30%, #f2b7cc 0%, #ef4233 30%, #c01520 60%, #601010 100%);*/
+    }
+  </style>
+</head>
+
+<body>
+  <div class="boll"></div>
+</body>
+
+</html>

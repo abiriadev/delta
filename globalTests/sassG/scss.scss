@@ -1,0 +1,14 @@
+$main-color: #123456;
+$w: 10px;
+
+p.para {
+  color: $main-color;
+  
+  span {
+    border-width: $w;
+  }
+  
+  &:hover {
+    width: $w * 20;
+  }
+}

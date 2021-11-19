@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="./init.css" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  body {
+    flex-direction: row;
+  }
+  
+  .dubTri {
+    width: 10rem;
+    height: calc(10rem /2 *1.7320508076 );
+    
+    transform: skewX(-30deg);
+  
+    background-color: yellowgreen;
+  
+    background-image: 
+    linear-gradient(
+    to right top,
+    transparent 50%,
+    gold 0
+    );
+    
+  
+  }
+  
+  div:not(.dubTri){
+    margin-left: 40px;
+  
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+<div class="dubTri"></div>
+<div class="x100"></div>
+</body>
+
+</html>

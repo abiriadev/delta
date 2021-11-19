@@ -1,0 +1,1 @@
+{"link=/https?:\\/\\/(\\w+)\\./g":{"regexp":"link","flags":"https?:\\/\\/(\\w+)\\."},"disc=/<link>/":{"regexp":"disc","flags":"<link>"}}

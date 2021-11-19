@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="./init.css" />
+    <style type="text/css" media="all">
+      
+    </style>
+    
+    <script type="text/javascript" charset="utf-8">
+      window.onload = () => {
+        const dogs = document.getElementsByName('asd')
+        
+        dogs.forEach(ele => {
+          console.log(`nodeName: ${ele.nodeName}, nodeType: ${ele.nodeType}, value: ${ele.value}, type: ${ele.type}`)
+        })
+      }
+    </script>
+</head>
+
+<body>
+  
+  <input type="text" name="asd" id="" value="1" />
+  <input type="text" name="asd" id="" value="2" />
+  <input type="text" name="asd" id="" value="3" />
+
+</body>
+
+</html>

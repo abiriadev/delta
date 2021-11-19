@@ -1,0 +1,21 @@
+p {
+  font-size: 12px;
+  color: #e71;
+}
+p strong {
+  text-decoration: none;
+}
+p .header {
+  color: #e71;
+}
+p .header nav.cls ul {
+  display: flex;
+}
+p .header nav.cls ul li {
+  color: 12px;
+  border-style: solid;
+  flex: 1;
+}
+p:hover {
+  border: 1px solid #e71;
+}

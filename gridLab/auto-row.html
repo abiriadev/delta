@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./../init.css" />
+    
+    <style type="text/css" media="all">
+      .grid {
+        width: 90%;
+        height: auto;
+      
+        border: 5px solid yellowgreen;
+        
+        display: grid;
+        
+        grid-template-columns: 100px 1fr;
+        grid-template-rows: auto;
+      }
+      
+      .item {
+        border: 5px solid yellow;
+      
+        height: 200px;
+      }
+      
+      .item:first-child {
+        height: 100px;
+      }
+    </style>
+    
+    <title></title>
+</head>
+
+<body>
+<div class="grid">
+  
+  <div class="item 100"></div>
+<div class="item 100"></div>
+</div>
+</body>
+
+</html>

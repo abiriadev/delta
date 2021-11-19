@@ -1,0 +1,9 @@
+target=4
+cur=0
+while [ cur -le target ]; do
+	read res
+	echo "$cur: $res"
+	cur=$((cur+1))
+done < hello
+
+echo "found target: $res"

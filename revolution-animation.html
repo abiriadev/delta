@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    
+    <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  @keyframes roll {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  
+  .orbit {
+    border-radius: 50%;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ padding: 5%;
+ box-sizing: content-box
+/* animation: roll 2s infinite linear; */
+  }
+  
+  .planet {
+        border-radius: 50%;
+transform-origin: 50% 100px;
+animation: roll 2s reverse infinite linear;
+  }
+  
+  .planet::first-line{
+  }
+  
+  .content {
+    animation: roll 2s infinite linear;
+transform-origin: center;
+border-radius: 50%;
+width: 100%;
+height: 100%;
+font-size: 2em;
+  }
+</style>
+</head>
+
+<body>
+<div class="orbit x200">
+  <div class="planet x50">
+    <div class="content">1</div>
+  </div>
+</div>
+</body>
+
+</html>

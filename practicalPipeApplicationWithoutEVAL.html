@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pipe Application</title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    const add = (a, b = 2) => a + b
+    const dut = (a, b = 2) => a - b
+    const mul = (a, b = 2) => a * b
+    const div = (a, b = 2) => a / b
+
+    let funcNames = []
+
+    do {
+      const answer = prompt("please input the function name for your logic")
+
+      funcNames.push(answer)
+    } while (confirm("are you more?"))
+
+    /*
+    let input = prompt("")
+    console.log(`input type: ${typeof input}`)
+    input = parseInt(input)
+    console.log(`input type again: ${typeof input}`)
+    */
+
+    /*
+    console.log(eval("1+6"))
+    console.log(eval("add(1, 3)"))
+    */
+
+    //alert(pipe(funcNames[0])(1))
+
+    const strOfFuncNames = funcNames.join(',')
+    /*
+    const result = eval(`pipe(${strOfFuncNames})(5)`)
+    */
+
+    const strNameMatchToFunc = name => {
+      switch(name) {
+        case "add": return add
+        case "dut": return dut
+        case "mul": return mul
+        case "div": return div
+        default: return null
+      }
+    }
+    
+    const result = pipe(...funcNames.map(strNameMatchToFunc))(5)
+    /**/
+ 
+    /*
+    const result = pipe(...funcNames)(1)
+    */
+
+    alert(result)
+
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

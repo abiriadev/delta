@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./init.css" />
+  <style type="text/css" media="all">
+    body {
+      flex-direction: column;
+    }
+
+    span {
+      font-size: 3em;
+
+      background-image:
+        radial-gradient(farthest-side at bottom,
+          transparent calc(7px - 2px),
+          deeppink 0 calc(7px + 2px),
+          transparent 0 100%),
+        radial-gradient(farthest-side at top,
+          transparent calc(7px - 2px),
+          deeppink 0 calc(7px + 2px),
+          transparent 0 100%);
+
+      background-size: 30px calc(7px);
+      background-position:
+        0 calc(1em - 7px),
+        calc(30px / 2) 1em;
+      background-repeat: repeat-x;
+  </style>
+</head>
+
+<body>
+  <span>lorem ipsum</span>
+  <div class="wave"></div>
+</body>
+
+</html>

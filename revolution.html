@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" />
+  <link rel="stylesheet" href="revolution.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <script src="revolution.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    .orbit {
+      width: 300px;
+      height: 300px;
+      box-sizing:
+        content-box;
+
+      border: 3px solid white;
+    }
+
+    .earth {
+      width: 50px;
+      height: 50px;
+      border: inherit;
+      background-color: transparent;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const earth = cls('earth')
+
+      const planetRadius = 25
+      const radius = 150
+
+      let deg = 0
+     // const rate = 1
+
+      const lt = lefttop(earth)
+      const moveToInsetOrbit = insetOrbit(radius, planetRadius)
+
+      const move = pipeline(
+        moveToInsetOrbit,
+        toPixel,
+        XYarrayToLeftTop,
+        lt
+      )
+
+      setInterval(() => {
+        deg += 1;
+
+        strfy(move(deg))
+      }, 8)
+    }
+  </script>
+</head>
+
+<body>
+  <div class="orbit">
+    <div class="earth planet"></div>
+  </div>
+</body>
+
+</html>

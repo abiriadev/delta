@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <script src="./../../delta/print.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    const getElements = classes => classes.map(_class => document.getElementsByClassName(_class))
+
+    window.onload = () => {
+      let [drag, drop] = getElements(['drag', 'drop'])
+      drag = drag[0]
+      drop = drop[0]
+
+      drag.addEventListener('dragstart', ev => {
+        print(ev)
+        ev.dataTransfer.setData("text/plain", "hello, drag!")
+      })
+
+      drop.addEventListener('dragover', ev=>ev.preventDefault())
+
+      drop.addEventListener('drop',ev => {
+        const msg = ev.dataTransfer.getData('text/plain')
+
+        print(msg)
+      })
+      
+      /*drop.ondragenter =ev=>{
+        e.target.style.border = "4px solid red"
+      }
+      drop.ondargleave =ev=>{
+        ev.target.style.border ='none'
+      }
+      drop.addEventListener = ev=>{
+                ev.target.style.border ='none'
+
+      }*/
+    }
+  </script>
+</head>
+
+<body>
+  <div draggable="true" class="drag x100"></div>
+  <div draggable="true" class="drop x200"></div>
+</body>
+
+</html>

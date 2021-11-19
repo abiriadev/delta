@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <link rel="stylesheet" href="./forTouch.css" />
+  <link rel="stylesheet" href="./fullscreenSlider.css" />
+  <script src="./swipe.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./dipping.js" type="text/javascript" charset="utf-8" defer></script>
+  <style type="text/css" media="all">
+    body {
+      border: none;
+      display: box;
+      overflow: hidden;
+    }
+
+    .slide {
+      grid-template-columns: repeat(3, auto);
+      transform: translateX(-100vw);
+
+      transition: .5s;
+    }
+
+    .slide>.item {
+      border: 6px solid deeppink;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    //import {setTouchZone} from "./generatePointer.js"
+    window.onload = () => {
+      swipe(document.body, 'slide')
+
+      const slide = document.getElementsByClassName('slide')[0]
+
+      let posC = -1
+      let st = 0
+
+      const lslide = () => slide.style.transform = `translateX(${100 * --posC}vw)`
+      const rslide = () => slide.style.transform = `translateX(${100 * ++posC}vw)`
+
+      slide.addEventListener('swipe', ev => {
+        console.log("스와이프 감지!")
+        console.log(ev.detail.diraction)
+        slide.style.transition = ".5s"
+        ev.detail.diraction == 'left' ? lslide() : rslide()
+        st = 0
+      })
+
+      slide.addEventListener('swipeing', ev => {
+        ++st ? slide.style.transition = "0s" : 0
+        slide.style.transform = `translateX(calc(${posC * 100}vw - ${ev.detail.relX}px))`
+      })
+
+      slide.addEventListener('swipecancel', ev => {
+        st = 0
+        slide.style.transition = ".5s"
+
+        slide.style.transform = `translateX(${100 * posC}vw)`
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <div class="window">
+    <div class="slide">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+</body>
+
+</html>

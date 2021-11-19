@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delta</title>
+  <!-- <link rel="stylesheet" href="./../tests/touchLab/fullscreenSlider.css" /> -->
+  <!--__init__-->
+  <link rel="stylesheet" href="./init.css" />
+  <!--slide-->
+  <link rel="stylesheet" href="./slide.css" />
+  <link rel="stylesheet" href="./btn.css" />
+  <link rel="stylesheet" href="./main-page.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./slideMediaQuery.css" type="text/css" media="all" />
+  <script src="./print.js" type="text/javascript" charset="utf-8" async></script>
+  <link rel="stylesheet" href="./../tests/widgets/slider.css" type="text/css" media="all" />
+  <script src="./../tests/widgets/slider.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    .slide {
+      transition: .7s;
+    }
+
+    .window {
+      overflow: scroll;
+    }
+
+    @media screen and (orientation: landscape) {
+
+      .slide {
+        background-color: #ddd;
+      }
+    }
+
+    .item {
+      border: 10px solid lightseagreen;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <style type="text/css" media="all">
+    img {
+      position: static;
+      top: 50px;
+      left: 50px;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const btn = document.querySelector('.btn')
+      const slide = document.querySelector('.slide')
+      const windowE = document.querySelector('.window')
+      const logo = document.querySelector('.logo')
+
+      let i = 0
+
+      btn.onclick = ev => {
+        //navigator.vibrate(200)
+        slide.style.transform = `translate${screen.orientation.type == 'portrait-primary'?'Y':'X'}(${- 100 * ++i}${screen.orientation.type == 'portrait-primary' ?'vh':'vw'})`
+      }
+      console.log(2892)
+
+      windowE.onscroll = ev => {
+        if (window.pageYOffset > 200) {
+          logo.style.position = 'fixed'
+        } else if (100 > window.pageYOffset && window.pageYOffset < 200) {
+          logo.style.transform = `scale(${-window.pageYOffset / 200 + 1})`
+          logo.style.backgroundColor = 'red'
+        } else if (window.pageYOffset < 100) {
+          logo.style.transform = `scale(1)`
+          logo.style.backgroundColor = 'orange'
+        }
+
+      }
+
+      logo.ontouchstart = ev => {
+        ev.target.style.backgroundColor = 'blue'
+      }
+
+      logo.ontouchend = ev => {
+        console.log("<wyuwuiw@&")
+        
+        ev.target.style.backgroundColor = 'transparent'
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="window">
+    <div class="btn">></div>
+    <div class="slide">
+      <div class="item main-page">
+        <img src="./../resources/images/discord.png" alt="logo" width="100" height="100" class="logo" />
+        <h1>팀 델타</h1>
+        <div>당신의 운명을 책임칩니다</div>
+      </div>
+      <div class="item sec">
+        <p>여러분의 도움으로 만들어졌습니다</p>
+      </div>
+      <div class="item 3rd">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+    </div>
+  </div>
+</body>
+
+</html>

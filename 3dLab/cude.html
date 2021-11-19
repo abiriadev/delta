@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../init.css" />
+  <style type="text/css" media="all">
+    .cube {}
+
+    .cube>.surface {
+      width: 100px;
+      height: 100px;
+      border: 3px solid greenyellow;
+
+      transition: 1s;
+    }
+
+    .cube>.surface:nth-child(1) {
+      transform: none;
+    }
+
+    .cube>.surface:nth-child(2) {
+      transform-origin: right top;
+      transform: skewY(30deg)
+    }
+
+    .cube>.surface:nth-child(3) {}
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      let i = false;
+      document.body.onclick = ev => document.querySelectorAll('.surface').forEach(surface => (i = !i) ? surface.style.transform = 'none' : delete surface.style.transform)
+
+      let a = document.querySelector('.surface')
+      
+      a.style.borderColor = 'red';
+
+      setTimeout(() => {
+        console.log(a.style.borderColor)
+
+        delete a.style.borderColor
+
+        console.log(JSON.stringify(a.style))
+      }, 3000)
+    }
+  </script>
+</head>
+
+<body>
+  <div class="cube">
+    <div class="surface"></div>
+    <div class="surface"></div>
+    <div class="surface"></div>
+  </div>
+</body>
+
+</html>

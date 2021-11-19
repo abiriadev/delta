@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./../tests/init.css" type="text/css" media="all" />
+  <script type="text/javascript" charset="utf-8">
+    window.onload = () => {
+      const output = document.getElementsByTagName('ol')[0]
+      const submit = document.querySelector('input')
+
+      submit.onkeydown = ev => {
+        if (!ev.target.value) return
+
+        let xhr = new XMLHttpRequest()
+
+        xhr.onreadystatechange = ev => {
+          if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200 || xhr.status === 201) {
+
+              let res = JSON.parse(xhr.responseText)
+res = JSON.parse(res)
+              if (!res.data) {
+                //output.innerText = res.msg
+                     document.querySelector('div').innerText = typeof res
+
+                return
+              }
+              res.data.forEach(data => {
+                const li = document.createElement('li')
+                li.innerHTML = data
+                output.appendChild(li)
+
+              })
+          } else {
+            console.error(xhr.responseText)
+            output.innerText = "실패: " + xhr.responseText
+          }
+        
+}}
+
+        const word = ev.target.value
+
+        xhr.open('POST', `/search`)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify({ word }))
+      }
+    }
+  </script>
+  <style type="text/css" media="all">
+  </style>
+</head>
+
+<body>
+  <form action="/search" method="post" accept-charset="utf-8">
+    <input type="search" name="" id="" value="" />
+    <ol>
+    </ol>
+  </form>
+  <div></div>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ball</title>
+  <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="canvas.css" type="text/css" media="all" />
+  <script src="canvas.js" type="application/javascript" charset="utf-8"></script>
+  <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    canvas {
+      border: 5px solid red;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    function calcDelta(speed, dir) {
+      return new Coordinate(
+        sin(dir) * speed,
+        cos(dir) * speed * -1
+      )
+    }
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    function Ball(
+      coordinate = new Coordinate(0, 0),
+      radius = 10,
+      option
+    ) {
+      option = Object.assign({
+        color: 'red',
+        diraction: 0,
+        speed: 1,
+      }, option)
+
+      this.radius = radius
+      this.coordinate = coordinate
+      this.color = option.color
+      this.diraction = option.diraction
+      this.speed = option.speed
+      this.delta = calcDelta(this.speed, this.diraction)
+    }
+    Object.assign(Ball.prototype, {
+      calcDelta,
+      setDiraction(dir) {
+        dir %= 360
+        this.delta = this.calcDelta(this.speed, dir)
+        this.diraction = dir
+      },
+      move(ctx) {
+        if (this.coordinate.x < 0) this.setDiraction(0 - this.diraction)
+        else if (ctx.canvas.width < this.coordinate.x) this.setDiraction(360 - this.diraction)
+        else if (this.coordinate.y < 0) this.setDiraction(180 - this.diraction)
+        else if (ctx.canvas.height < this.coordinate.y) this.setDiraction(360 + 180 - this.diraction)
+
+        this.coordinate.add(this.delta)
+        this.draw(ctx)
+      },
+      draw(ctx) {
+        ctx.beginPath()
+        ctx.arc(
+          this.coordinate.x,
+          this.coordinate.y,
+          this.radius,
+          0,
+          2 * Math.PI,
+          false
+        )
+        ctx.fillStyle = this.color
+        ctx.fill()
+      },
+    })
+
+    function Coordinate(x, y) {
+      this.x = x
+      this.y = y
+    }
+    Object.assign(Coordinate.prototype, {
+      equallyAdd(scala) {
+        this.x += scala
+        this.y += scala
+      },
+      add(otherCoordinate) {
+        this.x += otherCoordinate.x
+        this.y += otherCoordinate.y
+      },
+      toString() {
+        return `(${this.x}, ${this.y})`
+      },
+    })
+
+    function Rectangle(
+      ...args
+    ) {
+      switch (args.length) {
+        case 1:
+          if (typeof args[0] === 'object') {
+            const optionObj = args[0]
+            Object.assign(this,
+              Object.assign({
+                left: 0,
+                top: 0,
+                right: 100,
+                bottom: 100,
+              }, optionObj)
+            )
+          } else {
+            throw "if Rectangle function called by single argument, it must object type"
+          }
+          break
+        case 4:
+          break
+        case 2:
+          break
+        default:
+          break
+      }
+    }
+
+    function CanvasAnimation(
+      
+    ) {
+
+    }
+    Object.assign(CanvasAnimation.prototype, {
+      start() {
+        setInterval(
+          () => {
+            clearCanvas(ctx)
+            ballList.forEach(ball => ball.move(ctx))
+          }, timeInterval
+        )
+      },
+    })
+
+    function Canvas() {
+
+    }
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    const clearCanvas = ctx => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    }
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    try {
+      window.onload = () => {
+        try {
+          const [canvas, ctx] = getCanvas()
+          adjustToViewport(canvas)
+
+          window.onresize = ev => {
+            adjustToViewport(canvas)
+          }
+
+          let ballList = []
+          const ballCount = 3
+          const ballRadius = 12
+          const timeInterval = 15
+          const backAlpha = 1
+          const speed = .1
+
+
+
+
+          repeat(ballCount, i => {
+            const ball = new Ball(
+              new Coordinate(i % ballCount, 300),
+              ballRadius,
+              {
+                //color: undefined,
+                diraction: i * 2 % 360,
+                speed: .1,
+              }
+            )
+
+            ball.draw(ctx)
+            ballList.push(ball)
+          })
+
+          //inyerval
+        } catch (err) {
+          alert(err)
+        }
+      }
+    } catch (err) {
+      console.error(err)
+      alert(err)
+    }
+  </script>
+</head>
+
+<body>
+  <canvas>
+  </canvas>
+</body>
+
+</html>

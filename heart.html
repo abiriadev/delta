@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+  <script src="lib.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="all">
+    .heart {
+      background-color: gold;
+
+      transform: rotate(45deg);
+    
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      background-color: deeppink;
+      width: 150px;
+      position: absolute;
+      /* left: -100%; */
+      right: 0;
+      bottom: 0;
+      width: 150%;
+      height: 100%;
+      
+      opacity: .9;
+      border-radius: 40% 0 0 60%;
+    }
+
+    .heart::before {
+      transform: rotate(90deg);
+    transform-origin: 66.66% center;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="heart x100"></div>
+</body>
+
+</html>

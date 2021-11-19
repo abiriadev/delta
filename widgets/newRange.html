@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="./../init.css" type="text/css" media="all" />
+    <script src="./../lib.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css" media="all">
+      .range {
+        width: 90%;
+        height: 5%;
+        
+        background-color: green;
+        
+      }
+      
+      .iii {
+        width: 50px;
+        height: 100%;
+      
+        background-color: orange;
+      }
+    </style>
+    
+    <script type="text/javascript" charset="utf-8">
+      window.onload = ()=>{
+       const [iii]=getElement(['iii'])
+        iii.ontouchstart = ev =>{
+          log("1991")
+        }
+        
+        iii.ontouchmove = ev =>{
+          ev.target.style.transform = `translateX(${ev.touches[0].clientX}px)`
+        }
+        
+        iii.ontouchend = ev =>{
+          log(110101010)
+          iii.style.backgroundColor='red'
+        }
+      }
+    </script>
+</head>
+
+
+<body>
+<div class="range">
+  <div class="iii"></div>
+</div>
+</body>
+
+</html>

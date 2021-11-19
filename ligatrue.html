@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <script type="text/javascript" charset="utf-8">
+    window.alert(Array.prototype.slice.call(window.prompt("입력:")).reduce((outstr, char) => outstr + `${char.codePointAt(0).toString(2)}`, ""))
+  </script>
+
+<body>
+</body>
+
+</html>

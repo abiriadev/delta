@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="init.css" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  p {
+    font-size: 7em;
+    font-weight: 700;
+    
+    color: white;
+    
+    text-shadow: 
+    0 0 15px currentColor,
+    0 0 22px blue
+    ;
+    
+  }
+  
+  p::after{
+    position: absolute;
+    left: 0;
+    content: 'lorem';
+    filter: blur(2px);
+z-index: -1;
+  }
+</style>
+</head>
+
+<body>
+<p>lorem</p>
+</body>
+
+</html>
